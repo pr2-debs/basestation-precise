@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case "$1" in 
+  purge)
+    mv /etc/sudoers.bak /etc/sudoers
+    
+  ;;
+  *)
+  ;;
+esac
+
+#DEBHELPER#

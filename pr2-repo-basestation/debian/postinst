@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+PKG=pr2-repo-basestation
+
+case "$1" in
+  configure)
+        . /etc/lsb-release
+        
+        echo "deb http://packages.ros.org/pr2/ubuntu ${DISTRIB_CODENAME} basestation" > /etc/apt/sources.list.d/pr2debsbasestation.list
+    ;;
+
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

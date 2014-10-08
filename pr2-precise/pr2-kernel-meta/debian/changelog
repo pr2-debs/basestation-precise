@@ -1,0 +1,56 @@
+pr2-kernel-meta (0.0.7) precise; urgency=low
+
+  * Incrementing to SVN: r1263
+   - r1126: Update to debhelper v9
+   - r1263: Move pr2-kernel into main.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 30 Sep 2013 11:22:21 -0700
+
+pr2-kernel-meta (0.0.6) precise; urgency=low
+
+  * Incrementing to SVN: r1092
+   - r1092: Push latest PR2 kernel.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 11 Feb 2013 10:31:05 -0800
+
+pr2-kernel-meta (0.0.5) precise; urgency=low
+
+  * Incrementing to SVN: r924
+   - r924: Fix kernel dependency version.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 08 Aug 2012 14:05:40 -0700
+
+pr2-kernel-meta (0.0.4) precise; urgency=low
+
+  * Incrementing to SVN: r922
+   - r922: Update to new version of PR2 kernel.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 07 Aug 2012 22:21:11 -0700
+
+pr2-kernel-meta (0.0.3) precise; urgency=low
+
+  * Incrementing to SVN: r898
+   - r898: Fix dependencies for pr2-kernel-meta.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 31 Jul 2012 17:59:41 -0700
+
+pr2-kernel-meta (0.0.2) precise; urgency=low
+
+  * Incrementing to SVN: r897
+   - r897: Fix build rules for pr2-kernel-meta.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 31 Jul 2012 17:58:25 -0700
+
+pr2-kernel-meta (0.0.1) precise; urgency=low
+
+  * Incrementing to SVN: r896
+   - r896: Initial revision of pr2-kernel-meta package.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 31 Jul 2012 17:56:05 -0700
+
+pr2-kernel-meta (3.4.4.0) precise; urgency=low
+
+   * Initial Release
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 31 Jul 2012 17:43:19 -0700
+

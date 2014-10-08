@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. /etc/ros/setup.sh
+
+rosrun qualification qualify.py

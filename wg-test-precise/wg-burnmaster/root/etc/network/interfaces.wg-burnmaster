@@ -1,0 +1,35 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# No ecat0 interface for burnmaster
+
+# The primary network interface
+auto wan0
+iface wan01 inet dhcp
+
+# Cameras, on robot sub-net
+auto lan0
+iface lan0 inet static
+  address 10.68.0.99
+  netmask 255.255.255.0
+  post-up ip route add 157.22.19.22 via 10.68.0.5
+  post-up ip route add 157.22.19.25 via 10.68.0.5
+
+# For power board
+auto lan0:1
+iface lan0:1 inet static
+  address 192.168.1.10
+  netmask 255.255.255.0
+
+# For CTR350 qualification
+auto lan0:2
+iface lan0:2 inet static
+  address 192.168.0.6
+  netmask 255.255.255.0
+
+# For initial Prosilica qual
+auto lan0:3
+iface lan0:3 inet static
+  address 169.254.0.0
+  netmask 255.255.0.0

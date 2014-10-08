@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export DH_ALWAYS_EXCLUDE=CVS:.svn
+
+DEB_DIVERT_EXTENSION = .pr2-basestation
+DEB_DIVERT_FILES_pr2-basestation += \
+    /etc/network/interfaces.pr2-basestation \
+    /etc/dhcp3/dhclient.conf.pr2-basestation \
+    /etc/dnsmasq.conf.pr2-basestation \
+    /etc/chrony/chrony.conf.pr2-basestation \
+    /etc/default/atftpd.pr2-basestation \
+    /etc/default/dnsmasq.pr2-basestation \
+    /etc/default/rsync.pr2-basestation \
+    /etc/hosts.pr2-basestation
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/config-package.mk

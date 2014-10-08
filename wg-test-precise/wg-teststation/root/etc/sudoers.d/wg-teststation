@@ -1,0 +1,10 @@
+# sudoers additions for wg-teststation
+%wgadmin ALL=(ALL) ALL
+
+# Killing ROS processes
+ALL ALL=NOPASSWD: /usr/bin/ckill
+# Utilities
+ALL ALL=NOPASSWD: /usr/bin/sendhwlog
+# Restarting interfaces
+ALL ALL=NOPASSWD: /sbin/ifup, /sbin/ifdown, /sbin/ifconfig
+

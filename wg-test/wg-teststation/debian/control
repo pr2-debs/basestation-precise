@@ -1,0 +1,13 @@
+Source: wg-teststation
+Section: config
+Priority: extra
+Maintainer: Kevin Watts <watts@willowgarage.com>
+Build-Depends: debhelper (>= 5), config-package-dev (>= 4.5~)
+Standards-Version: 3.7.2
+
+Package: wg-teststation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, sendmail, fakeroot, python-svn, debhelper, config-package-dev, cdbs, python-pexpect, chrony, munin-node, pr2-ckill, pr2-systemcheck, pr2-ctr350, pr2-wrt610n, pr2-grant, pr2-sendhwlog, linux-rt-headers-2.6.31-10-pr2, linux-image-2.6.31-10-rt-pr2, linux-headers-2.6.31-10-rt-pr2, pr2-repo, ros-repo, wg-test-repo, ros-electric-pr2, ros-electric-pr2-self-test, ros-electric-diagnostics-monitors
+Description: Adds additional packages and config files on top of base lucid install
+Provides: ${diverted-files}, wg-teststation
+Conflicts: ${diverted-files}

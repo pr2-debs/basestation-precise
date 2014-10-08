@@ -1,0 +1,28 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+"http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
+<Menu>
+  <Name>Applications</Name>
+
+  <!-- WG Hardware Test Apps -->
+  <Menu>
+    <Name>WG Testing Apps</Name>
+    <Directory>WGTestApps.directory</Directory>
+    <Include>
+      <And>
+        <Category>WG Test Applications</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End WG Hardware Test Apps -->
+
+
+  <!-- WG Hardware Test Utils -->
+  <Menu>
+    <Name>WG Testing Utils</Name>
+    <Directory>WGTestUtils.directory</Directory>
+    <Include>
+      <And>
+        <Category>WG Test Utilities</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End WG Hardware Test Utils -->
+</Menu>

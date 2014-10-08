@@ -1,0 +1,13 @@
+Source: basestation-core-hydro
+Section: basestation/config
+Priority: extra
+Maintainer: Dash <dash@clearpathrobotics.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: basestation-core-hydro
+Architecture: all
+Depends: python, ros-hydro-pr2-desktop, ros-hydro-pr2-self-test
+Description: Provides /etc/ros setup for the basestation on groovy
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}

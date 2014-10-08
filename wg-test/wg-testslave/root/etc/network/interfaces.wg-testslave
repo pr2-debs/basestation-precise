@@ -1,0 +1,18 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto ecat0
+iface ecat0 inet static
+  address 0.0.0.0
+  netmask 255.255.255.0
+
+# The primary network interface
+auto wan0
+iface wan0 inet dhcp
+
+auto lan0
+iface lan0 inet static
+  address 10.68.0.100
+  netmask 255.255.255.0
+

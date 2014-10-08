@@ -1,0 +1,13 @@
+Source: basestation-core-groovy
+Section: basestation/config
+Priority: extra
+Maintainer: Austin Hendrix <ahendrix@willowgarage.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: basestation-core-groovy
+Architecture: all
+Depends: python, ros-groovy-pr2-desktop, ros-groovy-pr2-self-test
+Description: Provides /etc/ros setup for the basestation on groovy
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}

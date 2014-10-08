@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+# Software License Agreement (BSD License)
+#
+# Copyright (c) 2009, Willow Garage, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#  * Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above
+#    copyright notice, this list of conditions and the following
+#    disclaimer in the documentation and/or other materials provided
+#    with the distribution.
+#  * Neither the name of Willow Garage, Inc. nor the names of its
+#    contributors may be used to endorse or promote products derived
+#    from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+# Revision $Id$
+
+"""
+usage: %(progname)s [args]
+"""
+
+import os, sys, string, time
+from optparse import OptionParser
+import subprocess
+import socket
+import getpass
+
+def main(argv, stdout, environ):
+
+  parser = OptionParser(usage="usage: robot-formatdisks")
+  (options, args) = parser.parse_args()
+
+  if os.getuid() != 0:
+    parser.error("must be run as root")
+
+  sshcmd = ['ssh', '-q', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', 'c1']
+  sshcmd2 = ['ssh', '-q', '-o', 'ConnectTimeout=5', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', 'c2']
+
+  if not os.path.exists('/root/.ssh/id_rsa.pub'):
+    parser.error('Root user must have a generated ssh key')
+
+  # Unmount removable drives
+  subprocess.call(sshcmd + ['umount /removable'])
+  subprocess.call(sshcmd2 + ['umount /removable'])
+
+  # Unmount home
+  subprocess.call(sshcmd2 + ['umount /home'])
+
+  print "Formatting removable disks..."
+  f1 = subprocess.Popen(sshcmd + ['formatdisk -f /dev/removable'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+  f2 = subprocess.Popen(sshcmd2 + ['formatdisk -f /dev/removable'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+  (o1,e1) = f1.communicate()
+  (o2,e2) = f2.communicate()
+
+  print o1
+  print o2
+
+  if (f1.returncode == 0):
+    subprocess.check_call(sshcmd + ['mount /removable; chown root.users /removable; chmod 775 /removable; umount /removable'])  
+
+  if (f2.returncode == 0):
+    subprocess.check_call(sshcmd2 + ['mount /removable; chown root.users /removable; chmod 775 /removable; umount /removable'])  
+
+  if (f1.returncode != 0) or (f2.returncode != 0):
+    sys.exit(1)
+
+  
+
+  print "Success!"
+
+if __name__ == "__main__":
+  main(sys.argv, sys.stdout, os.environ)

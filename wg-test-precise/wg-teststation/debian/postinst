@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+PKG=wg-teststation
+
+case "$1" in
+  configure)
+
+	# Make /hwlog directory writable by users
+   [ -d /hwlog ] || mkdir /hwlog
+	chown root:users /hwlog
+	chmod g+rw -R /hwlog
+	chmod a+rwx -R /hwlog
+
+	# Remove ckill hosts file
+	if [ -f /etc/ckill/hosts ]; then
+	    rm /etc/ckill/hosts
+	fi
+
+	# Remove old packages lists
+	APT_DIR=/etc/apt/sources.list.d
+	if [ -f $APT_DIR/wg-teststation.list ]; then
+	    rm $APT_DIR/wg-teststation.list
+	fi
+
+	if [ -f $APT_DIR/ros-latest.list ]; then
+	    rm $APT_DIR/ros-latest.list
+	fi
+
+	/usr/sbin/update-grub2
+
+    ;;
+  
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac

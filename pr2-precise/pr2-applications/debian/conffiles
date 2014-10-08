@@ -1,0 +1,3 @@
+/var/ros/applications/setup.sh
+/var/ros/applications/catkin_ws/setup.sh
+/var/ros/applications/rosbuild_ws/setup.sh

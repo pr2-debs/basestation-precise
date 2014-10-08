@@ -1,0 +1,76 @@
+wg-burnmaster (0.1.7) stable; urgency=low
+
+  * Incrementing to SVN: r1272
+   - r1272: Fix typo
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 30 Sep 2013 18:07:48 -0700
+
+wg-burnmaster (0.1.6) stable; urgency=low
+
+  * Incrementing to SVN: r1270
+   - r1270: Update interface rules and postinst.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 30 Sep 2013 18:04:59 -0700
+
+wg-burnmaster (0.1.5) stable; urgency=low
+
+  * Incrementing to SVN: r1255
+   - r1255: Update for precise.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Fri, 27 Sep 2013 14:17:38 -0700
+
+wg-burnmaster (0.1.4) stable; urgency=low
+
+  * Incrementing to SVN: r790
+   - r789: Add hooks to rebuild initrd with new udev rules.
+   - r790: Add initrd install hooks for interface rules.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 26 Jul 2011 14:07:13 -0700
+
+wg-burnmaster (0.1.3) stable; urgency=low
+
+  * Incrementing to SVN: r662
+   - r662: Adding interface for zero-configured Prosilica cameras, 4987
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 04 Feb 2011 14:34:15 -0800
+
+wg-burnmaster (0.1.2) stable; urgency=low
+
+  * Incrementing to SVN: r508
+   - r508: Check for power board script now exits properly when no power board present
+
+ -- Kevin Watts <watts@willowgarage.com>  Wed, 22 Dec 2010 11:38:53 -0800
+
+wg-burnmaster (0.1.1) stable; urgency=low
+
+  * Incrementing to SVN: r422
+   - r422: Make power board check quieter
+
+ -- Kevin Watts <watts@willowgarage.com>  Wed, 01 Dec 2010 14:24:33 -0800
+
+wg-burnmaster (0.1.0) stable; urgency=low
+
+  * Incrementing to SVN: r128
+   - r128: Adding check for lan0:2 in wg-burnmaster
+
+ -- Kevin Watts <watts@willowgarage.com>  Tue, 12 Oct 2010 12:46:00 -0700
+
+wg-burnmaster (0.0.2) stable; urgency=low
+
+  * Incrementing to SVN: r108
+   - r108: Correcting lan0 setting for wg-burnmaster
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 08 Oct 2010 15:13:23 -0700
+
+wg-burnmaster (0.0.1) stable; urgency=low
+
+  * Incrementing to SVN: r106
+   - r106: First cut of debian package for burn in machines. Untested
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 08 Oct 2010 14:44:33 -0700
+
+wg-testmaster (0.0.1) stable; urgency=low
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 8 Oct 2010 11:10:48 -0700
+
+

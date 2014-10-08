@@ -1,0 +1,12 @@
+Source: pr2-ft
+Section: pr2/config
+Priority: extra
+Maintainer: Austin Hendrix <ahendrix@willowgarage.com>
+Build-Depends: debhelper (>= 9), subversion
+Standards-Version: 3.7.2
+
+Package: pr2-ft
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python
+Description: Installs the pr2-ft-config program which makes it easier to configure Force-Torque sensors on the PR2
+

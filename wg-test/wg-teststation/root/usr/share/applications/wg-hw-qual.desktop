@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PR2 Qualification
+GenericName=PR2 Component Qualification
+Comment=Test and qualify PR2 components
+Exec=/usr/bin/wg-qualify
+Terminal=true
+Type=Application
+Icon=/usr/share/pixmap/wg-qual.png
+Categories=Application;WG Test Applications;
+Version=0.1

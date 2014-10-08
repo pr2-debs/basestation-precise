@@ -1,0 +1,66 @@
+Notes for setting up the applications platform on the PR2:
+
+
+Provide a ROS workspace where users can install custom packages/stacks for apps
+ - catkin and rosbuild workspaces
+
+Provide a directory where users can install custom .app files
+
+Install alongside existing PR2 web interface.
+ x CGI script in /usr/lib/cgi-bin/control.py does not interfere with PR2 web UI
+
+Configuration for domain name/host name
+ - android doesn't use domain suffix to resolve unqualified names
+  - put fqdn as first entry in /etc/hosts for 10.68.0.1
+ x should set ROS_HOSTNAME somewhere before bringup
+  x Sets ROS_HOSTNAME from `hostname -f`
+
+Eliminate synchronization issues on startup.
+ x probably use a single launch file that combines bringup and application
+  x Done. /var/ros/applications/applications.launch
+ x figure out when the startup script should return, so that the android apps
+    attempt to connect at the correct time
+   x waits for ros master to start up
+   x waits for /robot/list_apps service to become available
+
+Provide a default, working environment loader
+ x Done. /var/ros/applications/env.sh sources /var/ros/applications/setup.sh
+
+Provide a pre-populated rosdep cache
+ x Done.
+
+Be ROS-agnostic, so that it can be used with whichever install is selected
+ by /etc/ros/distro
+ x Done. /var/ros/applications/setup.sh sources /etc/ros/setup.sh
+
+
+
+Filesystem layout:
+
+/var
+   ros
+      applications
+         rosbuild_ws # rosbuild workspace
+         catkin_ws   # catkin workspace
+         local_apps  # directory for local .app files
+         .ros        # applications user's .ros directory for caches, etc
+         applications.launch # combined launch file
+         setup.sh    # setup script. Should be tagged as a config file
+         env.sh      # environment-loader that uses setup.sh
+   log
+      pr2-applications
+         run.log
+/usr
+   lib
+      cgi-bin
+         control.py   # Web control script
+
+
+
+
+TODO:
+   release pr2 swordfight
+      - see pr2 assisted teleop
+   release other apps
+      - pocketsphinx
+      - pr2_hri

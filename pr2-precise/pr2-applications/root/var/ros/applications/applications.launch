@@ -1,0 +1,19 @@
+<launch>
+	<include file="/etc/ros/robot.launch"/>
+
+   <group ns="robot">
+      <param name="name" value="$(env HOSTNAME)"/>
+      <param name="type" value="pr2"/>
+      <param name="exchange_url"
+                value="https://kforge.ros.org/pr2apps/pr2_exchange/raw-file/$(env ROS_DISTRO)" />
+
+      <param name="dashboard/class_name" 
+                value="ros.android.views.Pr2Dashboard"/>
+   </group>
+ 
+   <node pkg="app_manager" type="appmaster" name="appmaster" args="-p 11312"/>
+ 
+   <node pkg="app_manager" type="app_manager" name="app_manager" args="--applist $(find pr2_app_manager)/mock_apps;/var/ros/applications/local_apps">
+         <param name="interface_master" value="http://localhost:11312"/>
+   </node>
+</launch>

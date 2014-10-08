@@ -1,0 +1,29 @@
+#!/bin/bash
+
+[[ -z $1 || -z $2 || -z $3 ]] && {
+    echo "Usage: ./setup_forward <client_name> <robot_ip> <external_ip>"
+    exit 1
+}
+
+clientname=${1}
+comp_ip=${2}
+new_ip_address=${3}
+
+if [ ! -d /var/run/iptables.d ]; then
+    mkdir /var/run/iptables.d
+fi
+
+(
+flock 200
+
+echo "-t nat -A PREROUTING -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}" > /var/run/iptables.d/${clientname}
+echo "-t nat -A OUTPUT -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}" >> /var/run/iptables.d/${clientname}
+echo "-t nat -A POSTROUTING -s ${comp_ip} -j SNAT --to-source ${new_ip_address}" >> /var/run/iptables.d/${clientname}
+
+iptables -t nat -A PREROUTING -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}
+iptables -t nat -A OUTPUT -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}
+iptables -t nat -A POSTROUTING -s ${comp_ip} -j SNAT --to-source ${new_ip_address}
+
+ip addr add ${new_ip_address}/32 dev wan0 label "wan0:${clientname}" || true
+
+) 200>/var/lock/robot-forward.lock

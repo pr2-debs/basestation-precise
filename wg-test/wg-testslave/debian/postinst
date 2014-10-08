@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+PKG=wg-testslave
+
+case "$1" in
+  configure)
+        test -x /usr/sbin/update-initramfs && update-initramfs -u
+
+    ;;
+  
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac

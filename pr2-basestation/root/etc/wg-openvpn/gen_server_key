@@ -1,0 +1,40 @@
+#!/bin/bash
+
+[[ `id -u` == 0 ]] || {
+    echo "Must run gen_robot_key as root"
+    exit 1
+}
+
+cd /etc/wg-openvpn/easy-rsa
+. ./vars
+
+read -p "Enter Country Code [${KEY_COUNTRY}]:" USER_KEY_COUNTRY
+[[ -z ${USER_KEY_COUNTRY} ]] && USER_KEY_COUNTRY=${KEY_COUNTRY}
+echo "export KEY_COUNTRY=\"${USER_KEY_COUNTRY}\"" > /etc/wg-openvpn/easy-rsa/user_vars
+
+read -p "Enter Province [${KEY_PROVINCE}]:" USER_KEY_PROVINCE
+[[ -z ${USER_KEY_PROVINCE} ]] && USER_KEY_PROVINCE=${KEY_PROVINCE}
+echo "export KEY_PROVINCE=\"${USER_KEY_PROVINCE}\"" >> /etc/wg-openvpn/easy-rsa/user_vars
+
+read -p "Enter City [${KEY_CITY}]:" USER_KEY_CITY
+[[ -z ${USER_KEY_CITY} ]] && USER_KEY_CITY=${KEY_CITY}
+echo "export KEY_CITY=\"${USER_KEY_CITY}\"" >> /etc/wg-openvpn/easy-rsa/user_vars
+
+read -p "Enter Organization [${KEY_ORG}]:" USER_KEY_ORG
+[[ -z ${USER_KEY_ORG} ]] && USER_KEY_ORG=${KEY_ORG}
+echo "export KEY_ORG=\"${USER_KEY_ORG}\"" >> /etc/wg-openvpn/easy-rsa/user_vars
+
+read -p "Enter Email [${KEY_EMAIL}]:" USER_KEY_EMAIL
+[[ -z ${USER_KEY_EMAIL} ]] && USER_KEY_EMAIL=${KEY_EMAIL}
+echo "export KEY_EMAIL=\"${USER_KEY_EMAIL}\"" >> /etc/wg-openvpn/easy-rsa/user_vars
+
+
+. ./user_vars
+./clean-all
+./pkitool --initca
+./pkitool --server server
+./build-dh
+
+cp keys/{ca.crt,ca.key,dh1024.pem,server.crt,server.key} ..
+
+/etc/init.d/wg-openvpn restart

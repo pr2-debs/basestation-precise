@@ -1,0 +1,9 @@
+When executable selector is run, the executable name used in
+conjunction with the value of /etc/host_type to look up a matching
+file in /etc/executable-selector.d.  These may be scripts or more
+often symlinks.
+
+If /etc/host_type does not exist, it defaults to "default"
+
+If it exists, "${EXE_NAME}.${HOST_TYPE}" is run.  If that doesn't
+exist, "${EXE_NAME}" is run.  Otherwise an error message is produced.

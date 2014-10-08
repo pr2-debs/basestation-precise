@@ -1,0 +1,219 @@
+#!/usr/bin/env python
+
+# Modified from qualification/scripts/ethernet_test.py by Jeremy Leibs
+# Runs flood ping test on computer in white lab to test ethernet cables
+
+# to setup local machine run :
+# sudo ifoconfig eth0 10.142.1.2/30
+local_ip  = '10.142.1.3'
+remote_ip = '10.142.1.2'
+local_iface = 'eth0'
+local_netmask = '255.255.255.252'
+verbose = False
+expect_100_mbit = False
+
+import os, sys
+import subprocess
+import select
+import signal
+import re 
+import getopt
+
+# Parses and verifies result of ping call
+def verify_ping_results(res) :
+    global verbose
+
+    if (len(res) <= 1):
+        if (verbose) :
+            print "No output from ping command"
+        return False
+
+    found_match = False
+    for line in res :
+        if re.search("[0-9]* packets transmitted, [0-9]* received,", line) != None : 
+            tran = float(line.split()[0])
+            recv = float(line.split()[3])
+            found_match = True
+            break
+
+    if not found_match :
+        if verbose :
+            print "Could not find packet loss in ping output : ", res
+        return False
+
+    if verbose:
+        print 'Flood Ping Transmitted: %f'%(tran)
+        print 'Flood Ping Received: %f'%(recv)
+
+    dropped = tran-recv
+    if (dropped >= 2): 
+        if verbose :
+            print 'Too many dropped ping packets, %d' % dropped
+        return False
+
+    if (tran < 100):
+        if verbose :
+            print 'Did not transmit enough ping packets for adaquate result, %d' % tran
+        return False
+
+    return True
+
+
+def setup_ip() :
+    global verbose
+    global local_ip
+    global local_iface
+
+    # Make sure local interface has right IP address
+    cmd = ["ifconfig", local_iface, local_ip, "netmask", local_netmask]
+    #print " ".join(cmd)
+    child = subprocess.Popen(cmd,  stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
+    if (child.wait() != 0) :
+        if (verbose) :
+            print "Setting interface address failed : "
+            print  child.stderr.read()
+        return False
+
+    return True
+
+# Run fload ping to verify connectivity and look for lost packets
+def ping_test() :
+    global verbose
+    global remote_ip
+    #res = os.popen('ping -f -q -w 1 -s 32768 %s' % remote_ip).readlines()
+
+    cmd = ['ping', '-f', '-q', '-w1', '-s32768', remote_ip]
+    #print " ".join(cmd)
+    child = subprocess.Popen(cmd,  stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
+    if (child.wait() == 2) :
+        if (verbose) :
+            print "Ping commmand failed"
+            print  child.stderr.read()
+            print  child.stdout.read()
+        return False        
+
+    res = child.stdout.readlines()
+    
+    return verify_ping_results(res)
+
+
+def speed_test() :
+    global verbose
+    global remote_ip
+
+    # Use netperf to verify that inteface came up at the right speed, 10Mbit / 100Mbit / 1Gbit
+    res = os.popen('netperf -H %s -t UDP_STREAM -l 1' % (remote_ip)).readlines()
+
+    speed = float(res[6].split()[3])
+    speed_str = ''
+    
+    ok = True
+    
+    if (speed > 750):
+        speed_str = 'Gigabit'
+    elif (speed > 100):
+        speed_str = 'Gigabit (slow), %d Mbit' % speed
+        if (expect_100_mbit) :
+            ok = True
+        else :
+            ok = False
+    elif (speed > 75):
+        speed_str = '100 Megabit'
+        if (expect_100_mbit) :
+            ok = True
+        else :
+            ok = False
+    elif (speed > 10):
+        speed_str = '100 Megabit (slow), %d Mbit' % speed
+        ok = False
+    else:
+        speed_str = '< 10 Megabit'
+        ok = False
+
+    if verbose:
+        print 'Cable speed: %s' % speed_str
+
+    if not ok:
+        return False
+
+    return True
+
+
+def interactive_ping_test() : 
+    global verbose
+    
+    print "Press ENTER key to end test"
+
+    cmd = ['ping', '-f', '-s32768', remote_ip]
+    child = subprocess.Popen(cmd,  stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
+
+    done = False
+    while (not done):
+        (input_fds, ignore1, ignore2) = select.select([sys.stdin, child.stdout, child.stderr], [], [], 5)
+        #print "Select %d" % len(input_fds), input_fds
+        if ( len(input_fds) == 0 ) :
+            if (verbose) :
+                print 'Timeout'
+            return False
+        else :
+            for fd in input_fds :
+                if (fd == sys.stdin) :
+                    #print "keypress" 
+                    done = True
+                elif (fd == child.stdout) :
+                    #print "stdout : "
+                    sys.stderr.write(fd.read(1))
+                    #print str, len(str)
+                    #print "stdout done"
+                elif (fd == child.stderr) :
+                    sys.stderr.write(fd.read())
+                else :
+                    print "unknown fd %d" % fd 
+                    return False
+
+    if verbose :
+        print "Select loop done"
+                
+    #child.send_signal(SIGINT) --- python 2.6 or greater
+    os.kill(child.pid, signal.SIGINT)
+    if (child.wait() == 2) :
+        if verbose : 
+            print "Ping command return error : retcode = %s" % child.returncode
+        return False
+
+    res = child.stdout.readlines()    
+    return verify_ping_results(res)          
+
+
+if __name__ == '__main__':
+    
+    (opts, argv) = getopt.gnu_getopt(sys.argv[1:], 'v', ["100"])
+    for opt in opts :
+        if (opt[0] == "-v"):
+            verbose = True
+        elif (opt[0] == "--100") :
+            expect_100_mbit = True
+        else :
+            print "Unknown option %s"%opt[0]
+
+    if not setup_ip() : 
+        print 'FAILED : setup IP address'
+        sys.exit(1)
+
+    print "Running ping test..."
+    if not ping_test() :
+        print ' FAIL'
+        sys.exit(2)
+
+    print "Running speed test..."
+    if not speed_test() :
+        print ' FAIL'
+        sys.exit(3)
+
+    print "Running interactive test..."
+    if not interactive_ping_test() :
+        print ' FAIL'
+        sys.exit(4)
+
+    print 'PASS'
+    sys.exit(0)

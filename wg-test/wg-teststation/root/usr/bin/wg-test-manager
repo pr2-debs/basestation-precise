@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. /etc/ros/setup.sh
+
+rosrun life_test test_manager.py 2>&1 > ~/.test_manager_$HOSTNAME.log &

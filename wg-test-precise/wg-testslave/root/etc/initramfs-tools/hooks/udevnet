@@ -1,0 +1,28 @@
+#!/bin/sh -e
+# initramfs hook for udev-p2
+
+MINKVER="2.6.24"
+PREREQ="udev"
+
+# Output pre-requisites
+prereqs()
+{
+       echo "$PREREQ"
+}
+
+case "$1" in
+    prereqs)
+    prereqs
+
+    exit 0
+    ;;
+esac
+
+. /usr/share/initramfs-tools/hook-functions
+
+if [ -e /etc/udev/rules.d/71-wg-testslave-interface.rules ]
+then
+   mkdir -p ${DESTDIR}/etc/udev/rules.d
+   cp /etc/udev/rules.d/71-wg-testslave-interface.rules ${DESTDIR}/etc/udev/rules.d
+fi
+

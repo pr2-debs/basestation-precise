@@ -1,0 +1,35 @@
+PR2 Force torque tools:
+   For bringing up and configuring force-torque sensors on the PR2
+   Contains calibration data and tools for manipulating /etc/ros that don't
+      belong in ROS
+
+/usr/share/pr2-ft/
+   - calibration data for all PR2 force-torque sensors
+   - build should check these out from svn rather than maintaining duplicate
+      copies of them here
+
+/usr/bin/pr2-ft-config
+   - Tool to manage the URDF updates and robot.launch updates for force-torque
+      sensors
+   - invocations:
+      pr2-ft-config --left <ID>
+         add/configure left F/T sensor with given ID
+         - may also be specified as -l
+         - should check and update the URDF
+         - should check and update robot.launch
+         - should throw an error if there is no cal data for the specified
+            sensor
+      pr2-ft-config --right <ID>
+         add/configure right F/T sensor with given ID
+         - may also be specified as -r
+         - same requirements and actions as left
+      pr2-ft-config --distro <distro> ...
+         Manage files in /etc/ros/<distro> instead of /etc/ros
+         - may also be -d
+      pr2-ft-config --urdf [URDF]
+         Only configure the URDF. 
+         If a path is given, configure that particular URDF
+         - may also be -u
+      pr2-ft-config --launch
+         Only configure the launch file
+   - --left and --right may be specified together

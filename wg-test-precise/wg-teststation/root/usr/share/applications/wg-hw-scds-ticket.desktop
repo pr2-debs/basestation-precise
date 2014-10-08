@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=File PR2 SCDS Ticket
+GenericName=File PR2 SCDS Ticket 
+Comment=File Support Ticket for PR2 Design Problem
+Exec=firefox https://prdev.willowgarage.com/trac/pr2scds/newticket
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmap/wg-exclamation.png
+Categories=Application;WG Test Utilities;
+Version=0.1

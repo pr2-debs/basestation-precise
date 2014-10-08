@@ -1,0 +1,21 @@
+python /usr/bin/ckill
+python /usr/bin/kill_ros
+bash
+tcsh
+csh
+sh
+sshd
+ssh
+emacs
+emacs22
+emacsclient
+xemacs
+vi
+vim
+less
+more
+pager
+man
+ps
+screen
+firefox

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case "$1" in 
+  purge)
+    
+  ;;
+  remove)
+        test -x /usr/sbin/update-initramfs && update-initramfs -u
+  ;;
+  *)
+  ;;
+esac
+
+#DEBHELPER#

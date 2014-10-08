@@ -1,0 +1,15 @@
+executable-selector (0.0.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r237
+   - r194: Fixing path lookup stuff for executable-selector
+   - r237: Upating executable-selector
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 18 Oct 2010 17:06:17 -0700
+
+executable-selector (0.0.1-precise) stable; urgency=low
+
+  * Incrementing to SVN: r192
+   - r192: Making the executable-selector package
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 18 Oct 2010 10:52:00 -0700
+

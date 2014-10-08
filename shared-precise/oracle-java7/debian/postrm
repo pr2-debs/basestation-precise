@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#DEBHELPER#
+
+remove_ALL_THE_THINGS()
+{
+    rm -rf /usr/local/java/oracle-java7
+}
+
+remove_ALL_THE_THINGS

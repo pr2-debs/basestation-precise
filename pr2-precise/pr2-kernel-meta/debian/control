@@ -1,0 +1,16 @@
+Source: pr2-kernel-meta
+Section: config
+Priority: extra
+Maintainer: Austin Hendrix <ahendrix@willowgarage.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.7.2
+
+Package: pr2-kernel
+Architecture: amd64
+Depends: linux-image-3.4.28.rt40-1-pr2, linux-image-3.4.28.rt40-1-pr2-rt
+Description: Metapackage for the PR2 kernel
+
+Package: pr2-kernel-headers
+Architecture: amd64
+Depends: linux-headers-3.4.28.rt40-1-pr2, linux-headers-3.4.28.rt40-1-pr2-rt
+Description: Metapackage for PR2 kernel headers

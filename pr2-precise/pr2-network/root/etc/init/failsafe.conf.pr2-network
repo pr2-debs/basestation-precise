@@ -1,0 +1,19 @@
+# failsafe
+
+description "Failsafe Boot Delay"
+author "Austin Hendrix <ahendrix@willowgarage.com>"
+
+start on filesystem and net-device-up IFACE=lo
+stop on static-network-up or starting rc-sysinit
+
+emits failsafe-boot
+
+console output
+
+script
+   # The PR2 should boot without waiting for any of the dhcp interfaces
+   #  Give the static interfaces 5 seconds to come up
+   sleep 5
+
+   exec initctl emit --no-wait failsafe-boot
+end script

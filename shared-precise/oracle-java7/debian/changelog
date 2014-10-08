@@ -1,0 +1,108 @@
+oracle-java7 (0.0.17-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1114
+   - r1114: Remove unused dep on liboverlay-scrollbar.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 20 Feb 2013 05:24:16 -0800
+
+oracle-java7 (0.0.16-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1105
+   - r1105: Fix multi-arch on Java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 19 Feb 2013 06:07:12 -0800
+
+oracle-java7 (0.0.15-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1103
+   - r1103: Add liboverlay-scrollbar dependency for Java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 23:32:18 -0800
+
+oracle-java7 (0.0.14-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1102
+   - r1102: Add GTK engine murrine for Java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 23:20:16 -0800
+
+oracle-java7 (0.0.13-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1101
+   - r1100: Summarize dependencies.
+   - r1101: Add C++ dependency for Java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 22:55:38 -0800
+
+oracle-java7 (0.0.12-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1098
+   - r1098: Add GTK dependency for Java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 22:45:44 -0800
+
+oracle-java7 (0.0.11-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1097
+   - r1097: Add more X dependencies for java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 22:24:38 -0800
+
+oracle-java7 (0.0.10-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1095
+   - r1089: Remove outdated warnings from asound.conf
+   - r1095: Add X dependencies for java.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 18 Feb 2013 21:22:04 -0800
+
+oracle-java7 (0.0.9-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1058
+   - r1058: Add meta-package for dependencies.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Thu, 06 Dec 2012 19:46:40 -0800
+
+oracle-java7 (0.0.8-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1056
+   - r1056: Update architecture.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Thu, 06 Dec 2012 19:41:52 -0800
+
+oracle-java7 (0.0.7-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1009
+   - r1009: Start working on java dependencies.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 04 Dec 2012 20:16:51 -0800
+
+oracle-java7 (0.0.6-precise) stable; urgency=low
+
+  * Incrementing to SVN: r985
+   - r895: update to shared-precise
+   - r985: Update build-depends.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 04 Dec 2012 13:09:30 -0800
+
+oracle-java7 (0.0.5-precise) stable; urgency=low
+
+  * Changed:
+    - oracle-java7/debian/postrm
+    - oracle-java7/debian/postinst
+  * Incrementing to SVN: r887
+   - r887: changed how the oracle-java7 package works.
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Thu, 12 Jul 2012 13:30:52 -0700
+
+oracle-java7 (0.0.3-precise) stable; urgency=low
+
+  * Unversioned:
+    - oracle-java7/root/usr/local/java/bin/ControlPanel
+  * Incrementing to SVN: r886
+   - r886: Added package oracle-java7 to shared-precise
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Thu, 12 Jul 2012 10:29:55 -0700
+
+oracle-java7 (0.0.1-precise) stable; urgency=low
+ -- Michael Brindle <mbrindle@willowgarage.com> Wed, 11 Jul 2012 15:19 -0700

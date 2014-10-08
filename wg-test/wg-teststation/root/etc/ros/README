@@ -1,0 +1,11 @@
+This directory contains the configuration for the test stations
+
+Files and their uses are listed below:
+
+/etc/ros/env
+ ROS_ROOT
+ ROS_PACKAGE_PATH 
+ ROS_MASTER_URI
+
+ * These files are used to load up the ROS environment for the robot.  These are used directly by the webui and by the pr2 binary, as well as used as the source of information for /etc/ros/setup.bash and other shell-specific set up scripts.
+

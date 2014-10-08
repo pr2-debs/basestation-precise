@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Restart Camera I/F
+GenericName=Restart lan0 Interface
+Comment=Restart lan0 Interface (Cameras)
+Exec=/usr/bin/restart_iface lan0
+Terminal=true
+Type=Application
+Icon=/usr/share/pixmap/wg-iface-restart.png
+Categories=Application;WG Test Utilities;
+Version=0.1

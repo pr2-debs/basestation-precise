@@ -1,0 +1,13 @@
+Source: wg-testslave
+Section: config
+Priority: extra
+Maintainer: Kevin Watts <watts@willowgarage.com>
+Build-Depends: debhelper (>= 9), config-package-dev (>= 4.5~)
+Standards-Version: 3.7.2
+
+Package: wg-testslave
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, wg-teststation
+Description: Adds settings for test slave machines on top to teststation install
+Provides: ${diverted-files}, wg-testslave
+Conflicts: ${diverted-files}, wg-testmaster

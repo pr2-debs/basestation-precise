@@ -1,0 +1,27 @@
+pr2-repo-basestation (0.5.4-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1113
+   - r1113: Update debhelper version.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 20 Feb 2013 03:51:17 -0800
+
+pr2-repo-basestation (0.5.3-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1106
+   - r1106: Remove old ROS distros and upgrade package architectures to 'all'.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 19 Feb 2013 06:23:09 -0800
+
+pr2-repo-basestation (0.5.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r581
+   - r581: Moving all debs over to packages.ros.org
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 11 Jan 2011 15:33:27 -0800
+
+pr2-repo-basestation (0.5.0-precise) stable; urgency=low
+
+  * Incrementing to SVN: r539
+   - r539: Creating pr2-repo-basestation package
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 23 Dec 2010 11:55:53 -0800

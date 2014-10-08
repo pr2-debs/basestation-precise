@@ -1,0 +1,270 @@
+#!/usr/bin/env python
+# Software License Agreement (BSD License)
+#
+# Copyright (c) 2009, Willow Garage, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#  * Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above
+#    copyright notice, this list of conditions and the following
+#    disclaimer in the documentation and/or other materials provided
+#    with the distribution.
+#  * Neither the name of Willow Garage, Inc. nor the names of its
+#    contributors may be used to endorse or promote products derived
+#    from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+# Revision $Id$
+
+"""
+usage: %(progname)s [args]
+"""
+
+import os, sys, string, time
+from optparse import OptionParser
+import subprocess
+import socket
+import getpass
+import socket
+import fcntl
+import struct
+
+
+def prompt(s, default = True):
+  if default:
+    option_str = " [Y/n]"
+  else:
+    option_str = " [y/N]"
+
+  yesno = raw_input(s + option_str)
+  if yesno.lower()=="y":
+    return True
+  elif yesno.lower()=="n":
+    return False
+  else:
+    return default
+
+def main(argv, stdout, environ):
+
+  parser = OptionParser(usage="usage: robot-brand <robotname> <c1name> <c2name> <robotsubnet> [basestationip]")
+
+  parser.add_option("--ignore-ctr350",action="store_true", dest="ignore_ctr350",default=False,
+                    help="Don't fail if ctr350 doesn't brand")
+  parser.add_option("-f", "--force",action="store_true", dest="force",default=False,
+                    help="Automatically answer yes to all prompts.")
+
+  (options, args) = parser.parse_args()
+
+  if os.getuid() != 0:
+    parser.error("must be run as root")
+
+  if len(args) < 4:
+    parser.error("Must supply first foure arguments")
+
+  robotname = args[0]
+  c1name = args[1]
+  c2name = args[2]
+
+  try:
+    binaryip = socket.inet_aton(args[3])
+    robotip = args[3]
+    if (ord(binaryip[0]) != 10 and ord(binaryip[1]) != 68):
+      parser.error("The robot subnet must be in the 10.68.0.0 range")
+    if (ord(binaryip[2]) in [0,255] ):
+      parser.error("10.68.0.0 and 10.68.255.0 are reserved subnets")
+    if (ord(binaryip[3]) != 0 ):
+      parser.error("Only the first 24 bits of the robot subnet should be specified")
+  except socket.error:
+    parser.error("Second argument must be a well-formed 24-bit subnet, e.g. 10.68.100.0")
+
+  if len(args) == 5:
+    inputip = args[4]
+  else:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    inputip = socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', 'wan0'))[20:24])
+
+  try:
+    socket.inet_aton(inputip)
+    basestationip = inputip
+  except socket.error:
+    parser.error("fifth argument must be a well-formed ip")
+
+  sshcmd = ['ssh', '-q', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', 'c1']
+  sshcmd2 = ['ssh', '-q', '-o', 'ConnectTimeout=5', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', 'c2']
+  scpcmd = ['scp', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null']
+
+  if not os.path.exists('/root/.ssh/id_rsa.pub'):
+    parser.error('Root user must have a generated ssh key')
+
+  if not (options.force or prompt("""
+
+WARNING: You are about to re-brand the robot connected to the service port!
+This may change multiple configuration files on the robot.
+When complete the robot computers will be '%s' and '%s', the robot
+will be using the vpn-subnet '%s', and it will connect to the basestation
+via the IP address %s
+
+Do you wish to continue?"""%(c1name, c2name, robotip, basestationip), False)):
+    sys.exit(0)
+
+  key=open('/root/.ssh/id_rsa.pub').read()
+
+  if not (options.force or prompt('Copy root ssh key to robot?')):
+    sys.exit(0)
+
+  keycopy = subprocess.Popen(sshcmd + ["cat >> /root/.ssh/authorized_keys"], stdin=subprocess.PIPE)
+  (o,e) = keycopy.communicate(key)
+  res = keycopy.wait()
+  if res != 0:
+    print >> sys.stderr, "Could not copy key!"
+    sys.exit(res)
+
+
+  if not os.path.exists("/etc/wg-openvpn/easy-rsa/keys/ca.crt"):
+    if options.force or prompt('Generate server vpn keys?'):
+      res = subprocess.call(['/etc/wg-openvpn/gen_server_key'])
+      if res != 0:
+        print >> sys.stderr, "Could not generate vpn server keys!"
+        sys.exit(res)
+
+  if os.path.exists("/etc/wg-openvpn/easy-rsa/keys/%s.crt"%robotname):
+    if not (options.force or prompt('Regenerate vpn-certificate for %s?  This will invalidate the existing keys.'%robotname)):
+      sys.exit(0)
+  else:
+    if not (options.force or prompt('Generate vpn-certificate for %s?'%robotname)):
+      sys.exit(0)
+
+  res = subprocess.call(['/etc/wg-openvpn/gen_robot_key', robotip, robotname])
+  if res != 0:
+    print >> sys.stderr, "Could not generate vpn certificate!"
+    sys.exit(res)
+
+
+
+  print 'Checking if pr2admin user has a password...'
+  passcheck = subprocess.Popen(sshcmd + ["passwd -S pr2admin | awk '{ print $2 }'"], stdout=subprocess.PIPE)
+  (o,e) = passcheck.communicate()
+  res = passcheck.wait()
+  if res != 0:
+    print >> sys.stderr, "Could check pr2admin password!"
+    sys.exit(res)
+
+  if o.strip() == 'L':
+    print 'No password set yet.'
+
+    if not (options.force or prompt('Set password for pr2admin user?')):
+      sys.exit(0)
+
+    password = getpass.getpass( 'Enter new password:')
+    checkpass = getpass.getpass('Retype password:')
+    while (password != checkpass):
+      print >> sys.stderr, "Passwords do not match!"
+      password = getpass.getpass( 'Enter new password:')
+      checkpass = getpass.getpass('Retype password:')
+
+    passset = subprocess.Popen(sshcmd + ["passwd pr2admin"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    (o,e) = passset.communicate(password+'\n'+password+'\n')
+    res = passset.wait()
+    if res != 0:
+      print >> sys.stderr, "Could not set pr2admin password!"
+      sys.exit(res)
+  else:
+    print 'Password already set.'
+
+
+
+
+  print 'Setting clocks...'
+  res = subprocess.call(sshcmd + ['ntpdate 10.68.0.6'])
+  if res != 0:
+    print >> sys.stderr, "Could not set clocks!"
+    sys.exit(res)
+
+
+
+  if not (options.force or prompt('Copy new VPN vertificate to robot?')):
+    sys.exit(0)
+
+  res = subprocess.call(scpcmd + ['/etc/wg-openvpn/%s.tgz'%robotname, 'c1:/etc/wg-openvpn/'])
+  if res != 0:
+    print >> sys.stderr, "Could not copy vpn certificate!"
+    sys.exit(res)
+
+  print 'Extracting vpnkeys on robot...'
+  res = subprocess.call(sshcmd + ['cd /etc/wg-openvpn && tar -xvzf /etc/wg-openvpn/%s.tgz'%robotname])
+  if res != 0:
+    print >> sys.stderr, "Could not untar vpn certificate!"
+    sys.exit(res)
+
+  print 'Get basestation hostname'
+  try:
+    with open('/etc/hostname') as f:
+      basestationhostname = f.read().split('\n')[0]
+  except:
+    print 'Could not get basestation hostname'
+    sys.exit(0)    
+  print 'Basestation hostname is "%s"'%basestationhostname    
+
+
+  if not (options.force or prompt('Brand robot with new information?')):
+    sys.exit(0)
+
+  res = subprocess.call(sshcmd + ['pr2-brand %s %s %s %s %s'%(robotname, c1name, c2name, basestationip, basestationhostname)])
+  if res != 0:
+    print >> sys.stderr, "Could not brand robot!"
+    sys.exit(res)
+
+
+  print 'Restarting chrony...'
+  res = subprocess.call(sshcmd + ['/etc/init.d/chrony restart'])
+  if res != 0:
+    print >> sys.stderr, "Could not restart chrony"
+    sys.exit(res)
+
+  print 'Starting robot vpn...'
+  res = subprocess.call(sshcmd + ['/etc/init.d/wg-openvpn restart'])
+  if res != 0:
+    print >> sys.stderr, "Could not start VPN"
+    sys.exit(res)
+
+  print 'Restarting multi-interface roam...'
+  res = subprocess.call(sshcmd + ['/etc/init.d/multi_interface_roam restart'])
+  if res != 0:
+    print >> sys.stderr, "Could not restart multi-interface roam"
+    sys.exit(res)
+
+  time.sleep(5)
+
+  print 'Waiting for vpn to connect... make sure robot wireless is configured or robot WAN is plugged in.'
+  while subprocess.call(sshcmd + ['ping -c1 10.68.255.1'], stdout=subprocess.PIPE) != 0:
+    time.sleep(1)
+
+
+  if options.force or prompt('Re-brand ctr350 access point to %sLAN?'%robotname):
+    res = subprocess.call(sshcmd + ['ctr350 -i 10.68.0.250 -p willow -n %sLAN'%robotname])
+    if res != 0:
+      if options.force and (not options.ignore_ctr350):
+        print >> sys.stderr, "Could not brand ctr350!  Run with flag: --ignore-ctr350 to ignore this error."
+        sys.exit(res)
+
+  print "Success!"
+
+if __name__ == "__main__":
+  main(sys.argv, sys.stdout, os.environ)

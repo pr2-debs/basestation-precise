@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# This script patches the NVIDIA kernel module for kernel version 2.6.33-rt
+# This should be run after the NVIDIA kernel module is upgrade
+
+apt-get update
+apt-get dist-upgrade -y
+
+# Each time the nvidia driver version changes this path has to change
+cd /usr/src/nvidia-current-260.19.06
+cat /etc/nvidia-patch/33rt.patch.txt | patch -p5
+
+# Build and install the nvidia driver kernel module
+dkms build -m nvidia-current -v 260.19.06
+dkms install -m nvidia-current -v 260.19.06
+
+# Create Xorg.conf file
+nvidia-xconfig
+
+# Make sure we're up-to-date here
+apt-get dist-upgrade -y

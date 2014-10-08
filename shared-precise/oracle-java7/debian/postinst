@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#DEBHELPER#
+
+install_everything()
+{
+    JAVAFILE=jre-7u5-linux-i586.tar.gz
+    mkdir -p /usr/local/java/oracle-java7
+    tar -xf /var/tmp/$JAVAFILE -C /usr/local/java/oracle-java7/
+    mv /usr/local/java/oracle-java7/jre*/* /usr/local/java/oracle-java7/
+    rm -rf /usr/local/java/oracle-java7/jre*
+}
+
+update_profile()
+{
+    install_everything
+    JAVA_HOME=/usr/local/java/oracle-java7
+    echo "export JAVA_HOME=/usr/local/java/oracle-java7" >> /etc/profile
+    echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile
+
+    update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME/bin/java" 1
+    update-alternatives --install "/usr/bin/javaws" "javaws" "$JAVA_HOME/bin/javaws" 1
+
+    update-alternatives --set java $JAVA_HOME/bin/java
+    update-alternatives --set javaws $JAVA_HOME/bin/javaws
+}
+
+case "$1" in
+    'configure')
+    update_profile
+
+    ;;
+
+    'triggered')
+
+    update_profile
+
+    ;;
+
+    *)
+    ;;
+
+esac

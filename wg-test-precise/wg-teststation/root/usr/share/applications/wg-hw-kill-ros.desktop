@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Kill ROS
+GenericName=Kill ROS Processes
+Comment=Kill all ROS processes
+Exec=/usr/bin/kill_ros
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmap/wg-kill-ros.png
+Categories=Application;WG Test Utilities;
+Version=0.1

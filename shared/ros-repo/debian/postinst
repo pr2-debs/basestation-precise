@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+PKG=ros-repo
+
+case "$1" in
+  configure)
+	if [ -e /etc/apt/ros.key ]; then
+	    apt-key add /etc/apt/ros.key
+	fi
+
+        . /etc/lsb-release
+        
+        echo "deb http://packages.ros.org/ros/ubuntu ${DISTRIB_CODENAME} main" > /etc/apt/sources.list.d/rosdebs.list
+    ;;
+
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

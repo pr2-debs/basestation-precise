@@ -1,0 +1,6 @@
+#!/bin/sh
+
+robot_ids=`find /home/hwlog -maxdepth 1 -type d -printf '%P\n'`
+for id in $robot_ids; do
+    /usr/bin/sendhwlog --path /home/hwlog/${id} --id ${id} --wg
+done

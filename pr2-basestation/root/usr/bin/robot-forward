@@ -1,0 +1,98 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import subprocess
+import time
+
+configfile='/etc/robot-forward.conf'
+
+using_dhcp = False
+
+def read_lines(helper):
+    try:
+        for line in open(configfile).readlines():
+            line = line.strip()
+            if len(line) == 0:
+                continue
+            if line[0] == "#":
+                continue
+            name,comp_ip,ip = line.strip().split()
+            if not name.isalnum():
+                segments = name.split('-')
+                if len(segments) != sum([x.isalnum() for x in segments]):
+                    print >> sys.stderr, "%s is not a valid clientid.  IDs must be made up of alphanumeric characters"%name
+                    sys.exit(1)
+            helper(name,comp_ip,ip)
+    except IOError:
+        print >> sys.stderr, "Problem reading config file: %s"%configfile
+        sys.exit(1)
+    
+
+def start_helper(name,comp_ip,ip):
+    global using_dhcp
+    if ip == 'dhcp':
+        using_dhcp = True
+        with open('/var/lib/robot-forward/dhclient.conf', 'a') as f:
+            f.write("""
+pseudo "%s" "wan0"
+{
+        send dhcp-client-identifier "%s";
+}
+"""%(name,name))
+    else:
+        subprocess.call(['setup-forward', name, comp_ip, ip])
+
+def do_start():
+    global using_dhcp
+    do_stop()
+    if not os.path.exists('/var/lib/robot-forward'):
+        os.mkdir('/var/lib/robot-forward')
+    if not os.path.exists('/var/run/robot-forward'):
+        os.mkdir('/var/run/robot-forward')
+    if os.path.exists('/var/lib/robot-forward/dhclient.wan0.leases'):
+        os.remove('/var/lib/robot-forward/dhclient.wan0.leases')
+    using_dhcp = False
+    with open('/var/lib/robot-forward/dhclient.conf', 'w') as f:
+        f.write("""
+option rfc3442-classless-static-routes code 121 = array of unsigned integer 8;
+
+request subnet-mask, broadcast-address, time-offset, routers,
+        domain-name, domain-name-servers, domain-search, host-name,
+        netbios-name-servers, netbios-scope, interface-mtu,
+        rfc3442-classless-static-routes, ntp-servers;
+""")
+    read_lines(start_helper)
+    if using_dhcp:
+        subprocess.call(['/sbin/dhclient', '-nw', '-cf', '/var/lib/robot-forward/dhclient.conf', '-pf', '/var/run/robot-forward/dhclient.wan0.pid', '-lf', '/var/lib/robot-forward/dhclient.wan0.leases', '-sf', '/usr/share/robot-forward/dhclient_helper.sh', 'wan0'])
+    
+
+def stop_helper(name,comp_ip,ip):
+    subprocess.call(['disable-forward', name])
+
+def do_stop():
+    if os.path.exists('/var/run/robot-forward'):
+        subprocess.call(['/sbin/dhclient', '-r', '-nw', '-cf', '/var/lib/robot-forward/dhclient.conf', '-pf', '/var/run/robot-forward/dhclient.wan0.pid', '-lf', '/var/lib/robot-forward/dhclient.wan0.leases', '-sf', '/usr/share/robot-forward/dhclient_helper.sh', 'wan0'])
+        time.sleep(2)
+        for fname in os.listdir('/var/run/robot-forward'):
+            with open(os.path.join('/var/run/robot-forward', fname),'r') as f:
+                pid = int(f.read())
+                subprocess.call(['kill', str(pid)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    read_lines(stop_helper)
+
+if __name__ == "__main__":
+
+    if os.getuid() != 0:
+        print >> sys.stderr, "must be run as root"
+        sys.exit(1)
+
+    if len(sys.argv) == 2:
+        if sys.argv[1] == 'start':
+            do_start()
+        elif sys.argv[1] == 'stop':    
+            do_stop()
+        sys.exit(0)
+
+    print >> sys.stderr, "Usage: robot-forward {start | stop}"
+    sys.exit(1)
+    

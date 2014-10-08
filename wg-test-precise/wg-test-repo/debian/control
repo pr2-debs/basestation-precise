@@ -1,0 +1,13 @@
+Source: wg-test-repo
+Section: config
+Priority: extra
+Maintainer: Jeremy Leibs <leibs@willowgarage.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.7.2
+
+Package: wg-test-repo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, apt, pr2-repo
+Description: Package containing the sources.list and key for the ros repository itself.
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+[[ -z $1 ]] && {
+    echo "Usage: ./disable_forward <client_name>"
+    exit 1
+}
+
+clientname=${1}
+
+(
+flock 200
+
+[[ -e /var/run/iptables.d/${clientname} ]] && {
+
+    new_ip_address=`sed -nre 's/^-t nat -A PREROUTING -d (.*) -j DNAT --to-destination .*$/\1/p' /var/run/iptables.d/${clientname}`
+    comp_ip=`sed -nre 's/^-t nat -A PREROUTING -d .* -j DNAT --to-destination (.*)$/\1/p' /var/run/iptables.d/${clientname}`
+    
+    rm -f /var/run/iptables.d/${clientname}
+    
+    [[ -z ${new_ip_address} || -z ${comp_ip} ]] || {
+	iptables -t nat -D PREROUTING -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}
+	iptables -t nat -D OUTPUT -d ${new_ip_address} -j DNAT --to-destination ${comp_ip}
+	iptables -t nat -D POSTROUTING -s ${comp_ip} -j SNAT --to-source ${new_ip_address}
+	ip addr del ${new_ip_address}/32 dev wan0 || true
+    }
+}
+
+) 200>/var/lock/robot-forward.lock

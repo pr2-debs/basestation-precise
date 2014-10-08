@@ -1,0 +1,13 @@
+Source: wg-burnmaster
+Section: config
+Priority: extra
+Maintainer: Kevin Watts <watts@willowgarage.com>
+Build-Depends: debhelper (>= 9), config-package-dev (>= 4.5~)
+Standards-Version: 3.7.2
+
+Package: wg-burnmaster
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, wg-teststation
+Description: Adds settings for burn-in master machines on top to teststation install
+Provides: ${diverted-files}, wg-burnmaster
+Conflicts: ${diverted-files}, wg-testslave, wg-testmaster

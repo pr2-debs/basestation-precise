@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export DH_ALWAYS_EXCLUDE=CVS:.svn
+
+export DEB_BUILD_GNU_TYPE:i386-linux-gnu
+export DEB_BUILD_ARCH:i386
+
+include /usr/share/cdbs/1/rules/debhelper.mk

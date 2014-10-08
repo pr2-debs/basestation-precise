@@ -1,0 +1,11 @@
+###########################################################
+#               Server
+###########################################################
+
+# PCI device 0x11ab:0x4364 (sky2)
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:30:1b:??:??:??", ATTR{type}=="1", KERNEL=="eth*", NAME="wan0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="80:ee:73:??:??:??", ATTR{type}=="1", KERNEL=="eth*", NAME="wan0"
+
+# PCI device 0x8086:0x107c (e1000)
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:1b:21:??:??:??", ATTR{type}=="1", KERNEL=="eth*", NAME="lan0"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="68:05:ca:??:??:??", ATTR{type}=="1", KERNEL=="eth*", NAME="lan0"

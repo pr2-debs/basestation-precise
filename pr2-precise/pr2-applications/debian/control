@@ -1,0 +1,13 @@
+Source: pr2-applications
+Section: pr2/config
+Priority: extra
+Maintainer: Austin Hendrix <ahendrix@willowgarage.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.7.2
+
+Package: pr2-applications
+Architecture: any
+Depends: python, pr2-core-impl, python-daemon, python-pexpect, pr2-environment (>= 0.5.88-precise)
+Description: Provides Android application framework for the PR2
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}

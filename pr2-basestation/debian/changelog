@@ -1,0 +1,833 @@
+pr2-basestation (0.5.53-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1166
+   - r1166: Make dnsmasq respect resolvconf again.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 01 May 2013 11:27:15 -0700
+
+pr2-basestation (0.5.52-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1160
+   - r1160: Conflict with network-manager.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 01 May 2013 10:05:48 -0700
+
+pr2-basestation (0.5.51-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1156
+   - r1156: Ignore resolvconf if it's installed.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 24 Apr 2013 13:18:45 -0700
+
+pr2-basestation (0.5.50-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1151
+   - r1151: Fix /etc/ros symlink for Groovy.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 08 Apr 2013 11:43:33 -0700
+
+pr2-basestation (0.5.49-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1149
+   - r1149: Update to Groovy.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 08 Apr 2013 11:37:54 -0700
+
+pr2-basestation (0.5.48-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1138
+   - r1138: Remove call to pr2-setup-c2-lvm.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 12 Mar 2013 14:56:24 -0700
+
+pr2-basestation (0.5.47-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1113
+   - r1113: Update debhelper version.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 20 Feb 2013 03:51:17 -0800
+
+pr2-basestation (0.5.46-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1111
+   - r1111: Update package section.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 20 Feb 2013 02:22:54 -0800
+
+pr2-basestation (0.5.45-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1106
+   - r1106: Remove old ROS distros and upgrade package architectures to 'all'.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 19 Feb 2013 06:23:09 -0800
+
+pr2-basestation (0.5.44-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1042
+   - r1042: Remove -n option to dhclient on precise.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Thu, 06 Dec 2012 12:37:23 -0800
+
+pr2-basestation (0.5.43-precise) stable; urgency=low
+
+  * Incrementing to SVN: r1032
+   - r894: pr2 installer updated for precise
+   - r927: Add support for the i5 basestation.
+   - r1032: Add dependency on wg-openvpn to pr2-basestation.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Wed, 05 Dec 2012 15:39:21 -0800
+
+pr2-basestation (0.5.42-precise) stable; urgency=low
+
+  * Changed:
+    - pr2-basestation/debian/control
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Mon, 16 Jul 2012 15:53:51 -0700
+
+pr2-basestation (0.5.41-precise) stable; urgency=low
+
+  * Changed:
+    - pr2-basestation/debian/control
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Mon, 16 Jul 2012 15:41:41 -0700
+
+pr2-basestation (0.5.41) stable; urgency=low
+
+  * Changed:
+    - pr2-basestation/debian/control
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Mon, 16 Jul 2012 15:39:28 -0700
+
+pr2-basestation (0.5.40-precise) stable; urgency=low
+
+  * Incrementing to SVN: r885
+   - r885: added precise support.
+
+ -- Michael Brindle <mbrindle@willowgarage.com>  Wed, 11 Jul 2012 16:26:21 -0700
+
+pr2-basestation (0.5.38-precise) stable; urgency=low
+
+  * Incrementing to SVN: r876
+   - r876: Update pr2-basestation to fuerte.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 15 May 2012 22:02:06 -0700
+
+pr2-basestation (0.5.37-precise) stable; urgency=low
+
+  * Incrementing to SVN: r873
+   - r873: Update pr2-basestation to Fuerte.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Fri, 11 May 2012 11:03:31 -0700
+
+pr2-basestation (0.5.36-precise) stable; urgency=low
+
+  * Incrementing to SVN: r822
+   - r822: Add MAC for newer shuttle boards.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 13 Dec 2011 14:01:47 -0800
+
+pr2-basestation (0.5.35-precise) stable; urgency=low
+
+  * Incrementing to SVN: r799
+   - r781: robot-forward deals with hostnames that contain dashes. #82
+   - r799: Update pr2-basestation to electric.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 09 Aug 2011 17:42:10 -0700
+
+pr2-basestation (0.5.34-precise) stable; urgency=low
+
+  * Incrementing to SVN: r731
+   - r729: openvpn server will restart individual connection when it fails to receive pings from openvpn client
+   - r731: add basestation to /etc/hosts in branding script
+
+ -- Wim Meeussen <wim@willowgarage.com>  Thu, 31 Mar 2011 17:17:34 -0700
+
+pr2-basestation (0.5.33-precise) stable; urgency=low
+
+  * Incrementing to SVN: r704
+   - r704: Lucid basestations were not netbooting new motherboards
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Sun, 20 Feb 2011 15:37:55 -0800
+
+pr2-basestation (0.5.32-precise) stable; urgency=low
+
+  * Incrementing to SVN: r632
+   - r632: Removing cturtle from basestation
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 18 Jan 2011 12:46:20 -0800
+
+pr2-basestation (0.5.31-precise) stable; urgency=low
+
+  * Incrementing to SVN: r630
+   - r622: Distro symlink should be made only if necessary
+   - r630: modifying basestation-core-cturtle
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 18 Jan 2011 12:39:57 -0800
+
+pr2-basestation (0.5.30-precise) stable; urgency=low
+
+  * Incrementing to SVN: r563
+   - r561: Fixing typo
+   - r563: Mounting home is allowed to fail since it may already be mounted
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 03 Jan 2011 15:46:32 -0800
+
+pr2-basestation (0.5.29-precise) stable; urgency=low
+
+  * Incrementing to SVN: r559
+   - r559: robot-formatdisks uses new pr2-setup-c2-lvm command
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 03 Jan 2011 14:33:31 -0800
+
+pr2-basestation (0.5.28-precise) stable; urgency=low
+
+  * Incrementing to SVN: r537
+   - r537: Adding dependency on pr2-repo-basestation
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 23 Dec 2010 11:54:20 -0800
+
+pr2-basestation (0.5.27-precise) stable; urgency=low
+
+  * Incrementing to SVN: r531
+   - r531: Moving basestation-only debs to their own directory
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 23 Dec 2010 11:06:52 -0800
+
+pr2-basestation (0.5.26-precise) stable; urgency=low
+
+  * Incrementing to SVN: r495
+   - r487: Moving robot-install to pr2-installer
+   - r491: Moving the installer stuff to new package
+   - r495: Adding deb on installer
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 20 Dec 2010 14:11:00 -0800
+
+pr2-basestation (0.5.25-precise) stable; urgency=low
+
+  * Incrementing to SVN: r482
+   - r482: Merge dhcp instances to get renew to work
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 17 Dec 2010 14:27:03 -0800
+
+pr2-basestation (0.5.24-precise) stable; urgency=low
+
+  * Incrementing to SVN: r481
+   - r481: Making the pr2-basestation package essential
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 18:14:14 -0800
+
+pr2-basestation (0.5.23-precise) stable; urgency=low
+
+  * Incrementing to SVN: r480
+   - r480: Making the pr2-basestation package essential
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 18:12:10 -0800
+
+pr2-basestation (0.5.22-precise) stable; urgency=low
+
+  * Incrementing to SVN: r479
+   - r479: Making pr2-basestation conflict with apparmor
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 17:46:50 -0800
+
+pr2-basestation (0.5.21-precise) stable; urgency=low
+
+  * Incrementing to SVN: r478
+   - r478: Adding more handled cases to dhclient helper
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 17:39:48 -0800
+
+pr2-basestation (0.5.20-precise) stable; urgency=low
+
+  * Incrementing to SVN: r476
+   - r476: Fixing the new dhclient-based robot-forward script
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 17:37:19 -0800
+
+pr2-basestation (0.5.19-precise) stable; urgency=low
+
+  * Incrementing to SVN: r474
+   - r474: Switching basestation over to use dhclient
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 16 Dec 2010 16:01:29 -0800
+
+pr2-basestation (0.5.18-precise) stable; urgency=low
+
+  * Incrementing to SVN: r473
+   - r473: Fixing changes to robot-brand
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 15 Dec 2010 22:36:48 -0800
+
+pr2-basestation (0.5.17-precise) stable; urgency=low
+
+  * Incrementing to SVN: r471
+   - r470: Changing /etc/ros to look more like robot
+   - r471: Adding prompt and more information to robot-brand
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 15 Dec 2010 22:16:03 -0800
+
+pr2-basestation (0.5.16-precise) stable; urgency=low
+
+  * Incrementing to SVN: r453
+   - r453: Fixing user vpn key generation
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 09 Dec 2010 17:53:25 -0800
+
+pr2-basestation (0.5.15-precise) stable; urgency=low
+
+  * Incrementing to SVN: r452
+   - r452: Moving basestation configuration stuff into the template directory
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 09 Dec 2010 17:39:25 -0800
+
+pr2-basestation (0.5.14-precise) stable; urgency=low
+
+  * Incrementing to SVN: r442
+   - r442: Adding mac-addresses for new robot type
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 06 Dec 2010 18:52:50 -0800
+
+pr2-basestation (0.5.13-precise) stable; urgency=low
+
+  * Incrementing to SVN: r416
+   - r416: Change chrony to upstart
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 01 Dec 2010 11:40:24 -0800
+
+pr2-basestation (0.5.12-precise) stable; urgency=low
+
+  * Incrementing to SVN: r374
+   - r374: Install the pr2-variant of the kernel
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 24 Nov 2010 12:42:30 -0800
+
+pr2-basestation (0.5.11-precise) stable; urgency=low
+
+  * Incrementing to SVN: r360
+   - r360: Fixing basestation diversion rules
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Nov 2010 18:06:32 -0800
+
+pr2-basestation (0.5.10-precise) stable; urgency=low
+
+  * Incrementing to SVN: r353
+   - r353: Adding nvidia dependency
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Nov 2010 16:42:58 -0800
+
+pr2-basestation (0.5.9-precise) stable; urgency=low
+
+  * Incrementing to SVN: r341
+   - r341: Flag to ignore ctr350 problems
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Nov 2010 13:35:07 -0800
+
+pr2-basestation (0.5.8-precise) stable; urgency=low
+
+  * Incrementing to SVN: r339
+   - r339: Switch to pr2-network
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Nov 2010 11:07:37 -0800
+
+pr2-basestation (0.5.7-precise) stable; urgency=low
+
+  * Incrementing to SVN: r337
+   - r337: Fixing iptables rules for basestation
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Sun, 21 Nov 2010 17:27:24 -0800
+
+pr2-basestation (0.5.6-precise) stable; urgency=low
+
+  * Incrementing to SVN: r335
+   - r335: Restarting multi_interface_roam during branding
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Sun, 21 Nov 2010 16:54:36 -0800
+
+pr2-basestation (0.5.5-precise) stable; urgency=low
+
+  * Incrementing to SVN: r320
+   - r320: Moving robot installer to new kernel
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 10 Nov 2010 15:00:19 -0800
+
+pr2-basestation (0.5.4-precise) stable; urgency=low
+
+  * Incrementing to SVN: r258
+   - r258: Adding tls-server to server.conf
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 20 Oct 2010 15:25:21 -0700
+
+pr2-basestation (0.5.3-precise) stable; urgency=low
+
+  * Incrementing to SVN: r251
+   - r249: Making the wg-openvpn scripts executable
+   - r250: Removing easy-rsa to re-add via export
+   - r251: adding easy-rsa with right permissions
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 19 Oct 2010 12:23:51 -0700
+
+pr2-basestation (0.5.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r244
+   - r242: reliably get robot installer to come up and use lan0
+   - r244: Merging basestation-experimental (0.0.4 - r980-precise)
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 19 Oct 2010 11:18:29 -0700
+
+pr2-basestation (0.5.1-precise) stable; urgency=low
+
+  * Incrementing to SVN: r227
+   - r125: Removing /etc/ros/env
+   - r126: setup.bash is just a symlink for setup.sh
+   - r221: Adding /var/lib
+   - r223: lucid boot stuff
+   - r224: updating symlinks
+   - r225: preseed
+   - r226: removing jaunty preseed
+   - r227: Make gen-robot-key work in lucid
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 18 Oct 2010 14:38:24 -0700
+
+pr2-basestation (0.5.0-precise) stable; urgency=low
+
+  * Incrementing to SVN: r115
+   - r115: Creating pr2-basestation deb
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 11 Oct 2010 17:32:13 -0700
+
+pr2-basestation (0.2.26-precise) stable; urgency=low
+
+  * Incrementing to SVN: r934
+   - r934: Adding lock
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 08 Jun 2010 16:40:11 -0700
+
+pr2-basestation (0.2.25-precise) stable; urgency=low
+
+  * Incrementing to SVN: r912
+   - r912: Basestation no longer needs to resolve to 10.68.255.1 for the robot
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 03 Jun 2010 16:54:50 -0700
+
+pr2-basestation (0.2.24-precise) stable; urgency=low
+
+  * Incrementing to SVN: r908
+   - r908: using user_vars when generating user and robot keys
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 03 Jun 2010 16:08:04 -0700
+
+pr2-basestation (0.2.23-precise) stable; urgency=low
+
+  * Incrementing to SVN: r904
+   - r904: fixing broken basestation deb
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 26 May 2010 10:38:20 -0700
+
+pr2-basestation (0.2.22-precise) stable; urgency=low
+
+  * Incrementing to SVN: r896
+   - r896: Adding ros tools to default bashrc
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 19 May 2010 11:24:52 -0700
+
+pr2-basestation (0.2.21-precise) stable; urgency=low
+
+  * Incrementing to SVN: r890
+   - r890: Avoiding errors when creating hwlog directory
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 14 May 2010 17:08:14 -0700
+
+pr2-basestation (0.2.20-precise) stable; urgency=low
+
+  * Incrementing to SVN: r889
+   - r889: making sure /home/hwlog exists
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 14 May 2010 16:11:42 -0700
+
+pr2-basestation (0.2.19-precise) stable; urgency=low
+
+  * Incrementing to SVN: r887
+   - r887: Changng over to new mechanism for sending hwlogs
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 14 May 2010 15:12:56 -0700
+
+pr2-basestation (0.2.18-precise) stable; urgency=low
+
+  * Incrementing to SVN: r868
+   - r868: Fixing up the robot-formatdisks script
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 10 May 2010 11:23:28 -0700
+
+pr2-basestation (0.2.17-precise) stable; urgency=low
+
+  * Incrementing to SVN: r861
+   - r861: Adding wan0 aliases
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 06 May 2010 22:08:29 -0700
+
+pr2-basestation (0.2.16-precise) stable; urgency=low
+
+  * Incrementing to SVN: r830
+   - r830: udhcpc needs to use wan0
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 28 Apr 2010 19:22:39 -0700
+
+pr2-basestation (0.2.15-precise) stable; urgency=low
+
+  * Incrementing to SVN: r788
+   - r780: Adding script to generate vpn keys for users
+   - r781: Trying to clean up some of our DNS crazyness
+   - r782: Fix for udhdpc lease problems
+   - r783: Make hwlog scripts executable
+   - r784: Fixing robot-formatdisks error message
+   - r787: More cleanup of robot-brand
+   - r788: Checking calls and printing success if works
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 09 Apr 2010 19:14:26 -0700
+
+pr2-basestation (0.2.14-precise) stable; urgency=low
+
+  * Incrementing to SVN: r764
+   - r764: Patching hole in basestation vpn security
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 06 Apr 2010 13:03:42 -0700
+
+pr2-basestation (0.2.13-precise) stable; urgency=low
+
+  * Incrementing to SVN: r761
+   - r761: eth0 -> wan0, eth1 -> lan0
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 05 Apr 2010 12:02:53 -0700
+
+pr2-basestation (0.2.12-precise) stable; urgency=low
+
+  * Incrementing to SVN: r756
+   - r755: Getting rid of old robot-install instructions
+   - r756: changing robot-forward.conf example
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 01 Apr 2010 21:51:24 -0700
+
+pr2-basestation (0.2.11-precise) stable; urgency=low
+
+  * Incrementing to SVN: r739
+   - r739: Replacing default and making it boot hd
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 01 Apr 2010 11:55:11 -0700
+
+pr2-basestation (0.2.10-precise) stable; urgency=low
+
+  * Incrementing to SVN: r735
+   - r735: Don't let the basestation netboot by default since it causes problems
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 01 Apr 2010 09:49:05 -0700
+
+pr2-basestation (0.2.9-precise) stable; urgency=low
+
+  * Incrementing to SVN: r731
+   - r731: Adding dependency on pr2-basestation-nvidia
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 31 Mar 2010 17:53:14 -0700
+
+pr2-basestation (0.2.8-precise) stable; urgency=low
+
+  * Incrementing to SVN: r722
+   - r722: Fixing udhcpc helper
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 23 Mar 2010 11:46:42 -0700
+
+pr2-basestation (0.2.7-precise) stable; urgency=low
+
+  * Incrementing to SVN: r721
+   - r721: Fixing robot_forward naming
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 23 Mar 2010 11:44:19 -0700
+
+pr2-basestation (0.2.6-precise) stable; urgency=low
+
+  * Incrementing to SVN: r718
+   - r717: Branding the CTR-350 when we brand the robot
+   - r718: Adding host option to robot joypair
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 23 Mar 2010 10:51:21 -0700
+
+pr2-basestation (0.2.5-precise) stable; urgency=low
+
+  * Incrementing to SVN: r714
+   - r714: Adding success message
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Mar 2010 13:52:57 -0700
+
+pr2-basestation (0.2.4-precise) stable; urgency=low
+
+  * Incrementing to SVN: r713
+   - r713: fixing joypair error code checking
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Mar 2010 13:49:45 -0700
+
+pr2-basestation (0.2.3-precise) stable; urgency=low
+
+  * Incrementing to SVN: r711
+   - r711: Improving joypair output
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Mar 2010 13:46:11 -0700
+
+pr2-basestation (0.2.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r709
+   - r709: Allowing robot names to be hostnames
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Mar 2010 10:44:59 -0700
+
+pr2-basestation (0.2.1-precise) stable; urgency=low
+
+  * Incrementing to SVN: r707
+   - r703: Disable step that waits for google
+   - r704: Wait for vpn-server, not google
+   - r706: More work on the basestation commands
+   - r707: Adding utility for pairing
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 22 Mar 2010 10:21:56 -0700
+
+pr2-basestation (0.2.0-precise) stable; urgency=low
+
+  * Incrementing to SVN: r692
+   - r677: Improving behavior of robot_setup to do time-sync
+       
+   - r678: Adding dependency on ros-latest-boxturtle
+   - r681: Adding /etc/ros
+   - r684: Adding disk-formatting into robot_setup
+   - r689: Moving back to using chrony
+   - r690: Updating robot preseed file
+   - r691: Adding pr2admin user for basestation
+   - r692: Making sshcmd2 work
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Sun, 14 Mar 2010 23:13:55 -0700
+
+pr2-basestation (0.1.27-precise) stable; urgency=low
+
+  * Incrementing to SVN: r671
+   - r667: Disabling dnsmasq sharing of hosts
+   - r668: Removing dependency on chrony -- ntp should be appropriate for basestation
+   - r669: Adding ntp dependency
+   - r670: Fixing apt sources.list
+   - r671: Restart chrony as part of robot branding process
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 11 Mar 2010 16:36:44 -0800
+
+pr2-basestation (0.1.26-precise) stable; urgency=low
+
+  * Incrementing to SVN: r666
+   - r666: fixing preseed
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 11 Mar 2010 02:02:42 -0800
+
+pr2-basestation (0.1.25-precise) stable; urgency=low
+
+  * Incrementing to SVN: r661
+   - r649: A package to build the ubuntu keyring deb which authorizes the WG PR2 Packages Key
+   - r660: New robot IP forwarding setup
+   - r661: Fixing robot preseed
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 10 Mar 2010 23:15:06 -0800
+
+pr2-basestation (0.1.24-precise) stable; urgency=low
+
+  * Incrementing to SVN: r629
+   - r626: Adding basestation dependency on chrony
+   - r628: first pass at robot_setup
+   - r629: Adding dependency on pr2-repo and ros-repo
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 12 Feb 2010 08:43:41 -0800
+
+pr2-basestation (0.1.23-precise) stable; urgency=low
+
+  * Incrementing to SVN: r562
+   - r517: Making sure root has a key.
+   - r562: Making basestation push hwlogs
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 18 Jan 2010 13:51:34 -0800
+
+pr2-basestation (0.1.22-precise) stable; urgency=low
+
+  * Incrementing to SVN: r497
+   - r488: adding python p-expect dependency
+   - r495: Putting default route for openvpn in routing table 10
+   - r497: More robust gen_robot_key script and better support for connection preservation.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 06 Jan 2010 18:20:36 -0800
+
+pr2-basestation (0.1.21-precise) stable; urgency=low
+
+  * Incrementing to SVN: r470
+   - r468: Trying to get installer to shutdown properly at end, as well as adding some beeps for notification.
+   - r470: Adding the robot_installer executable for reinstalling robot OS.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 31 Dec 2009 11:18:41 -0800
+
+pr2-basestation (0.1.20-precise) stable; urgency=low
+
+  * Incrementing to SVN: r465
+   - r464: Adding default/atftpd back
+   - r465: Updating rules for diversion.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 30 Dec 2009 00:08:18 -0800
+
+pr2-basestation (0.1.19-precise) stable; urgency=low
+
+  * Incrementing to SVN: r462
+   - r462: Removing diversions.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 29 Dec 2009 23:13:15 -0800
+
+pr2-basestation (0.1.18-precise) stable; urgency=low
+
+  * Incrementing to SVN: r452
+   - r438: Getting rid of non-standard "/netboot" location.
+   - r441: removing netboot directory
+   - r442: Adding ros-latest to the preseed
+   - r443: Adding dependency on pr2-bios-bmc-images
+   - r444: atftpd no longer needs modifications to defaults
+   - r445: thttpd no longer needs modificatios to configuration
+   - r446: Adding more bios options to pxelinux.cfg
+   - r451: Removing reflash images now that they are in another package.
+   - r452: Adding postfix to the preseed
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 29 Dec 2009 21:01:00 -0800
+
+pr2-basestation (0.1.17-precise) stable; urgency=low
+
+  * Incrementing to SVN: r416
+   - r416: Making basestation nat to the acquired ip address for robot from itself.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Fri, 18 Dec 2009 14:53:10 -0800
+
+pr2-basestation (0.1.16-precise) stable; urgency=low
+
+  * Incrementing to SVN: r405
+   - r405: Preventing adding to the hosts file multiple times.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 14 Dec 2009 16:01:22 -0800
+
+pr2-basestation (0.1.15-precise) stable; urgency=low
+
+  * Incrementing to SVN: r404
+   - r404: Fixing postrm script again.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 14 Dec 2009 15:48:59 -0800
+
+pr2-basestation (0.1.14-precise) stable; urgency=low
+
+  * Incrementing to SVN: r403
+   - r403: pr2-basestation cleaning up the stuff it puts in hosts correctly.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 14 Dec 2009 15:44:48 -0800
+
+pr2-basestation (0.1.13-precise) stable; urgency=low
+
+  * Incrementing to SVN: r402
+   - r402: Making pr2-basestation add c1 and c2 to the hosts file.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 14 Dec 2009 15:38:50 -0800
+
+pr2-basestation (0.1.12-precise) stable; urgency=low
+
+  * Incrementing to SVN: r392
+   - r392: Small fixes to gen_robot_key script.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 10 Dec 2009 18:13:19 -0800
+
+pr2-basestation (0.1.11-precise) stable; urgency=low
+
+  * Incrementing to SVN: r388
+   - r366: Addig the biosbmc images to the basetation installer.
+   - r388: Removing persist-tun option from vpn configurations.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 08 Dec 2009 19:03:35 -0800
+
+pr2-basestation (0.1.10-precise) stable; urgency=low
+
+  * Incrementing to SVN: r325
+   - r325: Making postinst scripts restart iptables.d as appropriate.
+       
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 24 Nov 2009 14:07:40 -0800
+
+pr2-basestation (0.1.9-precise) stable; urgency=low
+
+  * Pushing out null change to test if iptables.d does the right thing.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 24 Nov 2009 13:50:47 -0800
+
+pr2-basestation (0.1.8-precise) stable; urgency=low
+
+  * Incrementing to SVN: r323
+   - r308: Decreasing default timeout on c2 netboot.
+   - r310: Changing the default ip of c2 to 10.68.0.2 in dnsmasq.d
+   - r311: Added entry for the power board in dnsmasq.conf
+   - r321: Switching basestation to use pr2-iptables.d
+   - r323: Removing powerboard dhcp from basestation.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 24 Nov 2009 13:50:47 -0800
+
+pr2-basestation (0.1.7-precise) stable; urgency=low
+
+  * Incrementing to SVN: r300
+   - r298: Changing preseed to halt at end of robot install.
+   - r299: Removing gateway specification from eth1 on basetation.
+   - r300: Adding dependency on ia32-sun-java6-bin for kvm.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 19 Nov 2009 11:26:50 -0800
+
+pr2-basestation (0.1.6-precise) stable; urgency=low
+
+  * Incrementing to SVN: r293
+   - r293: Making sure openvpn server gets HUP'd after changing the server.conf file in gen_robot_key.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 18 Nov 2009 11:12:01 -0800
+
+pr2-basestation (0.1.5-precise) stable; urgency=low
+
+  * Incrementing to SVN: r287
+   - r287: Adding link for reboot.c32
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 18 Nov 2009 10:08:16 -0800
+
+pr2-basestation (0.1.4-precise) stable; urgency=low
+
+  * Incrementing to SVN: r285
+   - r284: Fixing netboot functionality for basestation.
+   - r285: Changing the configs of netbooting.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 18 Nov 2009 09:56:15 -0800
+
+pr2-basestation (0.1.3-precise) stable; urgency=low
+
+  * Incrementing to SVN: r275
+   - r251: Turning down verbosity on openvpn server.
+   - r259: Making machines do dns via basestation.
+   - r272: Fixing gen_robot_key script.
+   - r275: Adding netbooting to the pr2-basestation.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 17 Nov 2009 13:24:28 -0800
+
+pr2-basestation (0.1.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r239
+   - r239: Adding missing newline to the end of dhclient.conf
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 04 Nov 2009 10:25:17 -0800
+
+pr2-basestation (0.1.1-precise) stable; urgency=low
+
+  * Incrementing to SVN: r229
+   - r220: Removing stale line from server.conf in basestation vpn
+   - r229: gen_robot_key no longer needs to know server ip address.
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 03 Nov 2009 19:09:51 -0800
+
+pr2-basestation (0.1-precise) stable; urgency=low
+
+  * Initial release. 
+  * Creating the package
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 22 Oct 2009 13:36:11 -0700

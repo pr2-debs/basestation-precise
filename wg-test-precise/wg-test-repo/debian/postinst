@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+PKG=wg-test-repo
+
+case "$1" in
+  configure)
+        . /etc/lsb-release
+        
+        echo "deb http://packages.willowgarage.com/wg-test/ubuntu ${DISTRIB_CODENAME} main" > /etc/apt/sources.list.d/wg-test.list
+    ;;
+
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

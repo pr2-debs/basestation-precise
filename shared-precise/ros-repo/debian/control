@@ -1,0 +1,13 @@
+Source: ros-repo
+Section: config
+Priority: extra
+Maintainer: Jeremy Leibs <leibs@willowgarage.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: ros-repo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, apt
+Description: Package containing the sources.list and key for the ros repository itself.
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}

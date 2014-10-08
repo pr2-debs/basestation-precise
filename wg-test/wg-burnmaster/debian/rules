@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export DH_ALWAYS_EXCLUDE=CVS:.svn
+
+DEB_DIVERT_EXTENSION = .wg-burnmaster
+DEB_DIVERT_FILES_wg-burnmaster += \
+    /etc/network/interfaces.wg-burnmaster
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/config-package.mk

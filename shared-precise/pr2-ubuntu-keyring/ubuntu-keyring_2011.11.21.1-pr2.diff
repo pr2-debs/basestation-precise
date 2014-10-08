@@ -1,0 +1,13 @@
+diff -ur ubuntu-keyring-2011.11.21.1/debian/changelog ubuntu-keyring-2011.11.21.1-pr2/debian/changelog
+--- ubuntu-keyring-2011.11.21.1/debian/changelog	2012-09-25 03:52:07.000000000 -0700
++++ ubuntu-keyring-2011.11.21.1-pr2/debian/changelog	2012-12-04 15:18:34.883693816 -0800
+@@ -1,3 +1,9 @@
++ubuntu-keyring (2011.11.21.1-pr2.2) precise; urgency=low
++
++  * Added Willow Garage PR2 Packages Key
++
++ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 04 Dec 2012 15:18:20 -0800
++
+ ubuntu-keyring (2011.11.21.1) precise-proposed; urgency=low
+ 
+   * Add 4096R/C0B21F32 Ubuntu Archive Automatic Signing Key (2012)

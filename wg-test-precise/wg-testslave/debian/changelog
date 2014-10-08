@@ -1,0 +1,188 @@
+wg-testslave (0.1.4) stable; urgency=low
+
+  * Incrementing to SVN: r1272
+   - r1272: Fix typo
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 30 Sep 2013 18:07:48 -0700
+
+wg-testslave (0.1.3) stable; urgency=low
+
+  * Incrementing to SVN: r1270
+   - r1270: Update interface rules and postinst.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Mon, 30 Sep 2013 18:04:59 -0700
+
+wg-testslave (0.1.2) stable; urgency=low
+
+  * Incrementing to SVN: r1255
+   - r1255: Update for precise.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Fri, 27 Sep 2013 14:17:38 -0700
+
+wg-testslave (0.1.1) stable; urgency=low
+
+  * Incrementing to SVN: r790
+   - r790: Add initrd install hooks for interface rules.
+
+ -- Austin Hendrix <ahendrix@willowgarage.com>  Tue, 26 Jul 2011 14:07:13 -0700
+
+wg-testslave (0.1.0) stable; urgency=low
+
+  * Incrementing to SVN: r88
+   - r88: Adding check for interfaces to test slaves
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 02 Aug 2010 16:05:48 -0700
+
+wg-testslave (0.0.12) stable; urgency=low
+
+  * Incrementing to SVN: r70
+   - r70: Allow both types of USB adapters on lan0 for test slaves
+
+ -- Kevin Watts <watts@willowgarage.com>  Thu, 01 Jul 2010 13:59:25 -0700
+
+wg-testslave (0.0.11) stable; urgency=low
+
+  * Incrementing to SVN: r67
+   - r55: Removing udev files for slave/master. Will be added to WG installer
+   - r63: Switch ethernet interface names on test slaves/master
+   - r67: Fixed name of network interfaces file in divert rule
+
+ -- Kevin Watts <watts@willowgarage.com>  Thu, 01 Jul 2010 13:25:16 -0700
+
+wg-testslave (0.0.10) stable; urgency=low
+
+  * Removed:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 15:30:03 -0700
+
+wg-testslave (0.0.9) stable; urgency=low
+
+  * Incrementing to SVN: r54
+   - r54: Diversion rules for  70-persistent-net not needed
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 11:06:52 -0700
+
+wg-testslave (0.0.8) stable; urgency=low
+
+  * Added:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules
+  * Removed:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules.wg-testslave
+  * Changed:
+    - wg-testslave/debian/rules
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 10:43:44 -0700
+
+wg-testslave (0.0.7) UNRELEASED; urgency=low
+
+  * Incrementing to SVN: r53
+   - r53: Rules for 70-persistent-net corrected
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 10:26:29 -0700
+
+wg-testslave (0.0.6) UNRELEASED; urgency=low
+
+  * Changed:
+    - wg-testslave/debian/rules
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 10:23:15 -0700
+
+wg-testslave (0.0.5) UNRELEASED; urgency=low
+
+  * Changed:
+    - wg-testslave/debian/rules
+
+ -- Kevin Watts <watts@willowgarage.com>  Mon, 28 Jun 2010 10:21:35 -0700
+
+wg-testslave (0.0.4) UNRELEASED; urgency=low
+
+  * Incrementing to SVN: r51
+   - r50: Adding package for test slaves, which have different networking configurations
+   - r51: Adding wg-testmaster to debs for test machine GUIs
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 25 Jun 2010 11:10:48 -0700
+
+wg-testslave (0.0.3) UNRELEASED; urgency=low
+
+  * Added:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules.wg-testslave
+  * Removed:
+    - wg-testslave/root/usr
+    - wg-testslave/root/etc/xdg
+    - wg-testslave/root/etc/udev/rules.d/40-permissions.rules
+    - wg-testslave/root/etc/testfile
+    - wg-testslave/root/etc/sysctl.d
+    - wg-testslave/root/etc/sudoers.wg-teststation
+    - wg-testslave/root/etc/ros
+    - wg-testslave/root/etc/network
+  * Changed:
+    - wg-testslave/debian/rules
+    - wg-testslave/debian/postinst
+    - wg-testslave/debian/control
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 25 Jun 2010 10:42:57 -0700
+
+wg-testslave (0.0.2) UNRELEASED; urgency=low
+
+  * Added:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules.wg-testslave
+  * Removed:
+    - wg-testslave/root/usr
+    - wg-testslave/root/etc/xdg
+    - wg-testslave/root/etc/udev/rules.d/40-permissions.rules
+    - wg-testslave/root/etc/testfile
+    - wg-testslave/root/etc/sysctl.d
+    - wg-testslave/root/etc/sudoers.wg-teststation
+    - wg-testslave/root/etc/ros
+    - wg-testslave/root/etc/network
+  * Changed:
+    - wg-testslave/debian/rules
+    - wg-testslave/debian/postinst
+    - wg-testslave/debian/control
+
+ -- Kevin Watts <watts@willowgarage.com>  Fri, 25 Jun 2010 10:42:13 -0700
+
+wg-testslave (0.0.1) UNRELEASED; urgency=low
+
+  * Added:
+    - wg-testslave/root/etc/udev/rules.d/70-persistent-net.rules.wg-testslave
+  * Removed:
+    - wg-testslave/root/usr
+    - wg-testslave/root/etc/xdg
+    - wg-testslave/root/etc/udev/rules.d/40-permissions.rules
+    - wg-testslave/root/etc/testfile
+    - wg-testslave/root/etc/sysctl.d
+    - wg-testslave/root/etc/sudoers.wg-teststation
+    - wg-testslave/root/etc/ros
+    - wg-testslave/root/etc/network
+  * Changed:
+    - wg-testslave/debian/rules
+    - wg-testslave/debian/postinst
+    - wg-testslave/debian/control
+  * Incrementing to SVN: r47
+   - r19: Sudoers files for test stations
+   - r20: Rules file for test station. Allows Hokuyo access
+   - r21: sysctl.conf sets rules for wge100 camera
+   - r22: Adding send hwlog to sudoers file
+   - r23: Adding utility to restart ethernet interface
+   - r24: Ethernet cable test added to test station computer configuration. WG-ROS-PKG #4445
+   - r25: Added desktop application launches for qualification/test manager apps. WG-ROS-PKG #4447
+   - r26: Added applications for launching qualification, test manager. WG-ROS-PKG #4447
+   - r27: Utilities for restarting eth0/eth2 added to WG HW utilities
+   - r28: Menus for HW test utilities
+   - r29: Added icons, apps for filing ECO, support, SW tickets for test stations
+   - r30: Interfaces for two-port 100Mbs PCI slot
+   - r33: sudoers needs to be treated differently
+   - r34: Adding etc/ros stuff to wg-teststation
+   - r35: Removing some pr2-specific stuff
+   - r36: Adding pr2-related dependencies
+   - r42: Adding post install rule for applications menu, since this file conflicts with gnome-menus
+   - r43: Correcting sysctl.conf fix for rmem max
+   - r45: Not installing applications menu just yet
+   - r46: Test station debian successfully installs with proper menu, etc
+   - r47: Test applications/icons for qualification/test manager
+
+ -- Kevin Watts <watts@willowgarage.com>  Thu, 24 Jun 2010 12:24:45 -0700
+
+

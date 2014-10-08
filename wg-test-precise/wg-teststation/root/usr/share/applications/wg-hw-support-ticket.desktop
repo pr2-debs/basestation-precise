@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=File Support Ticket
+GenericName=File WG Support Ticket
+Comment=File Support Ticket for PR2 Problem
+Exec=firefox http://support.willowgarage.com/home
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmap/wg-alert.png
+Categories=Application;WG Test Utilities;
+Version=0.1

@@ -1,0 +1,19 @@
+Source: oracle-java7
+Section: shared
+Priority: extra
+Maintainer: Michael Brindle <mbrindle@willowgarage.com>
+Build-Depends: debhelper (>= 5), cdbs
+Standards-Version: 3.7.2
+
+Package: oracle-java7
+Architecture: i386
+Description: Provides the Oracle i386 java binaries.
+Depends: oracle-java7-libs
+Provides: ${diverted-files}, java7-runtime, java-6-runtime, java5-runtime, java2-runtime, java-runtime, java
+Conflicts: ${diverted-files}, openjdk
+Multi-Arch: foreign
+
+Package: oracle-java7-libs
+Architecture: i386
+Description: Meta-Package for 32-bit java dependencies
+Depends: libxtst6, libgtk2.0-0, libstdc++6, gtk2-engines-murrine

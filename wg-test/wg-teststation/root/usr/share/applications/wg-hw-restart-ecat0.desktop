@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Restart EtherCAT I/F
+GenericName=Restart ecat0 Interface
+Comment=Restart ecat0 Interface (EtherCAT)
+Exec=/usr/bin/restart_iface ecat0
+Terminal=true
+Type=Application
+Icon=/usr/share/pixmap/wg-iface-restart.png
+Categories=Application;WG Test Utilities;
+Version=0.1

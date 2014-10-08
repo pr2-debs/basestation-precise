@@ -1,0 +1,41 @@
+#!/bin/bash
+
+[[ `id -u` == 0 ]] || {
+    echo "Must run gen_user_key as root"
+    exit 1
+}
+
+[[ -z $1 ]] && {
+    echo "Usage: ./gen_user_key <client_name>"
+    exit 1
+}
+
+[[ $1 =~ ^[a-zA-Z]+[a-zA-Z0-9\-]*$ ]] || {
+    echo "Client name must be limited to valid hostnames."
+    exit 1
+}
+
+NAME=$1
+HOSTNAME=`hostname --fqdn`
+IP=`ip address show dev wan0 | sed -nr 's/.*inet (.*)\/.*wan0\$/\1/p'`
+
+SCRATCH=`mktemp -d`
+mkdir $SCRATCH/basestation
+
+cat template/basestation-user.conf | sed -e 's/\${NAME}/'"${NAME}"'/g;s/\${IP}/'"${IP}"'/g;s/\${HOSTNAME}/'"${HOSTNAME}"'/g' > ${SCRATCH}/basestation.conf
+
+cd /etc/wg-openvpn/easy-rsa
+. ./vars
+. ./user_vars
+./pkitool ${NAME}
+cp keys/${NAME}.{crt,key} ${SCRATCH}/basestation
+cp keys/ca.crt ${SCRATCH}/basestation
+
+cd ${SCRATCH}
+tar -czf ${NAME}.tgz basestation.conf basestation
+
+cp ${NAME}.tgz /etc/wg-openvpn
+
+rm -rf ${SCRATCH}
+
+killall -HUP -q wg-openvpn

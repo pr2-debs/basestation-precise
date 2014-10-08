@@ -1,0 +1,20 @@
+wg-test-repo (0.1.2-precise) stable; urgency=low
+
+  * Incrementing to SVN: r32
+   - r32: removing install file
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 23 Jun 2010 18:23:41 -0700
+
+wg-test-repo (0.1.1-precise) stable; urgency=low
+
+  * Incrementing to SVN: r16
+   - r16: Creating wg-test-repo and adding dependencies
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 23 Jun 2010 15:34:18 -0700
+
+wg-test-repo (0.1-precise) stable; urgency=low
+
+  * Initial release. 
+  * Creating the package
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Tue, 29 Dec 2009 22:19:48 -0800

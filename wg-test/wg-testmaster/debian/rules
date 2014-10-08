@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export DH_ALWAYS_EXCLUDE=CVS:.svn
+
+DEB_DIVERT_EXTENSION = .wg-testmaster
+DEB_DIVERT_FILES_wg-testmaster += \
+    /etc/network/interfaces.wg-testmaster
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/config-package.mk

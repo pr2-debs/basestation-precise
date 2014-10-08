@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Test Manager
+GenericName=PR2 Component Life Testing
+Comment=Life test and burn in PR2 Components
+Exec=/usr/bin/wg-test-manager
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmap/wg-test-manager.png
+Categories=Application;WG Test Applications;
+Version=0.1

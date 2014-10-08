@@ -1,0 +1,15 @@
+Source: pr2-basestation
+Section: basestation/config
+Priority: extra
+Essential: yes
+Maintainer: Jeremy Leibs <leibs@willowgarage.com>
+Build-Depends: debhelper (>= 5), config-package-dev (>= 4.5~)
+Standards-Version: 3.7.2
+
+Package: pr2-basestation
+Essential: yes
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, pr2-iptables.d, dnsmasq, atftpd, syslinux, fakeroot, python-svn, debhelper, config-package-dev, cdbs, oracle-java7, pr2-bios-bmc-images, python-pexpect, pr2-repo, ros-repo, chrony, pr2-sendhwlog, wg-openvpn, apache2, nvidia-current, nvidia-settings, pr2-installer, pr2-repo-basestation, basestation-core-groovy
+Description: Configures a computer to act as a basestation for the PR2
+Provides: ${diverted-files}, pr2-basestation
+Conflicts: ${diverted-files}, apparmor, network-manager

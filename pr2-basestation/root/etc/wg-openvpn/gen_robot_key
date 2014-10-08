@@ -1,0 +1,55 @@
+#!/bin/bash
+
+[[ `id -u` == 0 ]] || {
+    echo "Must run gen_robot_key as root"
+    exit 1
+}
+
+[[ -z $1 || -z $2 ]] && {
+    echo "Usage: ./gen_robot_key <client_ip> <client_name>"
+    exit 1
+}
+
+[[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+    echo "Client IP '$1' not formatted as IP address."
+    exit 1
+}
+
+[[ $2 =~ ^[a-zA-Z]+[a-zA-Z0-9\-]*$ ]] || {
+    echo "Robot name must be limited to valid hostnames."
+    exit 1
+}
+
+CLIENT_IP_BASE=`echo $1 | sed -e 's/\.[^.]*$//g'`
+NAME=$2
+
+SCRATCH=`mktemp -d`
+mkdir $SCRATCH
+mkdir $SCRATCH/basestation
+
+cat /etc/wg-openvpn/template/basestation.conf | sed -e 's/\${NAME}/'"${NAME}"'/g' > ${SCRATCH}/basestation.conf
+
+grep -q "route ${CLIENT_IP_BASE}.0 255.255.255.0" /etc/wg-openvpn/server.conf || echo "route ${CLIENT_IP_BASE}.0 255.255.255.0" >> /etc/wg-openvpn/server.conf
+
+[[ -e /etc/wg-openvpn/ccd ]] || mkdir /etc/wg-openvpn/ccd
+
+echo "iroute ${CLIENT_IP_BASE}.0 255.255.255.0
+ifconfig-push ${CLIENT_IP_BASE}.1 ${CLIENT_IP_BASE}.6" > /etc/wg-openvpn/ccd/${NAME}
+
+cd /etc/wg-openvpn/easy-rsa
+rm -f keys/index.txt
+touch keys/index.txt
+. ./vars
+. ./user_vars
+./pkitool ${NAME}
+cp keys/${NAME}.{crt,key} ${SCRATCH}/basestation
+cp keys/ca.crt ${SCRATCH}/basestation
+
+cd ${SCRATCH}
+tar -czf ${NAME}.tgz basestation.conf basestation
+
+cp ${NAME}.tgz /etc/wg-openvpn
+
+rm -rf ${SCRATCH}
+
+killall -HUP -q wg-openvpn

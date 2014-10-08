@@ -1,0 +1,43 @@
+fstab.d (0.0.6) stable; urgency=low
+
+  * Incrementing to SVN: r466
+   - r466: Triggers don't seem to do the right thing no matter what
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 15 Dec 2010 21:27:34 -0800
+
+fstab.d (0.0.5) stable; urgency=low
+
+  * Incrementing to SVN: r464
+   - r464: Fixing syntax of interest
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 15 Dec 2010 20:44:33 -0800
+
+fstab.d (0.0.4) stable; urgency=low
+
+  * Incrementing to SVN: r460
+   - r460: Trigger on modifications of /etc/fstab.d
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Wed, 15 Dec 2010 20:40:05 -0800
+
+fstab.d (0.0.3) stable; urgency=low
+
+  * Incrementing to SVN: r283
+   - r282: Also need to touch /etc/fstab in case it doesn't exist yet
+   - r283: Improving fstab.d checking
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Mon, 25 Oct 2010 15:44:16 -0700
+
+fstab.d (0.0.2) stable; urgency=low
+
+  * Incrementing to SVN: r272
+   - r272: Fixing fstab
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 21 Oct 2010 17:50:37 -0700
+
+fstab.d (0.0.1) stable; urgency=low
+
+  * Incrementing to SVN: r270
+   - r270: Creating fstab.d package
+
+ -- Jeremy Leibs <leibs@willowgarage.com>  Thu, 21 Oct 2010 17:22:54 -0700
+

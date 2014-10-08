@@ -1,0 +1,1 @@
+This is where all ROS environment variables go to perform an svn-based install of ROS. By default, that directory is "/opt/ros/svn_install". Depending on where you install ROS, that directory should change.

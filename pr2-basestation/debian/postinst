@@ -1,0 +1,54 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+PKG=pr2-basestation
+
+case "$1" in
+  configure)
+
+    if [ -e /etc/init.d/atftpd ]; then
+      invoke-rc.d atftpd stop || true
+      invoke-rc.d atftpd start || true
+    fi
+
+    # We have added a rule, we should restart iptables.d to load it
+    if [ -e /etc/init.d/iptables.d ]; then
+      invoke-rc.d iptables.d restart || true
+    fi
+
+    # Chrony now operates using upstart
+    if [ -e /etc/init.d/chrony ]; then
+        update-rc.d -f chrony remove || true
+    fi
+
+    cp /etc/sudoers /etc/sudoers.bak
+    cp /etc/sudoers.pr2-basestation /etc/sudoers
+    chmod 0440 /etc/sudoers
+
+    cp /etc/skel.pr2-basestation/.bashrc /etc/skel/
+
+    groupadd -f -r admin
+    id pr2admin || adduser pr2admin --disabled-password -quiet --gecos "" || :
+    usermod -a -G admin pr2admin
+    usermod -p '$6$y8bYkWMS$mSYrin8XdzlCyMt2nqO6SpOwqiibyBdK1ZxoVAwOA/mAp81Eqk2I03Qtw6z6RRE6Kb/e.ls8VYaJLwExY/N2u1' pr2admin
+
+    # Create a key for root if there isn't one already
+    if [ ! -e /root/.ssh/id_rsa.pub ]; then
+	yes | ssh-keygen -q -f /root/.ssh/id_rsa -N ""
+    fi
+    
+    # Make sure "home/hwlog" exists
+    [ -d /home/hwlog ] || mkdir /home/hwlog
+
+    # Create the distro symlink if it's not there
+    [ -e /etc/ros/distro -o -h /etc/ros/distro ] || ln -sf /etc/ros/groovy /etc/ros/distro
+
+    ;;
+  
+  *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac

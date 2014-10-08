@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Report Testing Bug
+GenericName=Report Testing Bug
+Comment=Report a Problem with the WG Test Systems
+Exec=firefox https://code.ros.org/trac/wg-ros-pkg/newticket?owner=watts&component=hardware+test
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmap/wg-help.png
+Categories=Application;WG Test Utilities;
+Version=0.1
