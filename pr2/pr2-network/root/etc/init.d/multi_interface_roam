@@ -1,3 +1,0 @@
-#! /bin/sh
-. /etc/sysros/setup.sh
-/etc/sysros/wifi/pr2_init "$@"

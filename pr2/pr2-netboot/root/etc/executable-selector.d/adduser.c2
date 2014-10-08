@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "You cannot run adduser on c2.  Please login to c1."

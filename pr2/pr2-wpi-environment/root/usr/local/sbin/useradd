@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "The useradd command should not be used.  Please use adduser instead."
