@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "You cannot run pr2-shutdown on c2.  Please login to c1."
