@@ -1,0 +1,13 @@
+Source: basestation-core-indigo
+Section: basestation/config
+Priority: extra
+Maintainer: Dash <dash@clearpathrobotics.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: basestation-core-indigo
+Architecture: all
+Depends: python, ros-indigo-pr2-desktop, ros-indigo-pr2-self-test
+Description: Provides /etc/ros setup for the basestation on Indigo
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}
