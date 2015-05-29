@@ -1,3 +1,6 @@
 [submodule "pr2-repo-basestation"]
 	path = pr2-repo-basestation
 	url = https://github.com/pr2-debs/pr2-repo-basestation
+[submodule "pr2-installer"]
+	path = pr2-installer
+	url = https://github.com/pr2-debs/pr2-installer
