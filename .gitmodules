@@ -10,3 +10,6 @@
 [submodule "basestation-core-hydro"]
 	path = basestation-core-hydro
 	url = https://github.com/pr2-debs/basestation-core-hydro
+[submodule "basestation-core-fuerte"]
+	path = basestation-core-fuerte
+	url = https://github.com/pr2-debs/basestation-core-fuerte
