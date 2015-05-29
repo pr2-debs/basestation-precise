@@ -1,3 +1,0 @@
--t nat -A POSTROUTING -o ! lo -j MASQUERADE
--t filter -A INPUT -d 10.68.0.0/16 -i wan0 -j DROP
-
