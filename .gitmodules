@@ -7,3 +7,6 @@
 [submodule "pr2-basestation"]
 	path = pr2-basestation
 	url = https://github.com/pr2-debs/pr2-basestation
+[submodule "basestation-core-hydro"]
+	path = basestation-core-hydro
+	url = https://github.com/pr2-debs/basestation-core-hydro
